@@ -2,16 +2,16 @@
 
 
   <p align="center">
-    project_description
+    Advanced Vacation Planner, allowing multiple people to colaborate, as well as providing useful data for financing the trip.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/PlusUltra404/GroupVacationPlanner"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/PlusUltra404/GroupVacationPlanner">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/PlusUltra404/GroupVacationPlanner/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/PlusUltra404/GroupVacationPlanner/issues">Request Feature</a>
   </p>
 </div>
 
@@ -34,12 +34,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#scrum-master">Scrum Master</a></li>
   </ol>
 </details>
 
@@ -73,8 +72,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
 
 ### Installation
 
@@ -86,8 +83,6 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -98,14 +93,13 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 - [ ] Weather API implemented
 - [ ] Voting feature implemented
+    - [ ] Login feature implemented
 - [ ] Local hotel price API implemented
-- [  ] Flight cost API implemented
+    - [ ] Flight cost API implemented
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 
 
@@ -121,9 +115,7 @@ Distributed under the Apache License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Hunter Stone - hunter.stone1002@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -132,12 +124,13 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* []() Inspiration from - https://medium.com/brisk-voyage/how-we-scrape-300k-flight-prices-per-day-from-google-flights-79f5ddbdc4c0
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- Scrum Master -->
 ## Scrum Master
+Hunter Stone - hunter.stone1002@gmail.com
+
+<p align="right">(<a href="#top">back to top</a>)</p>
