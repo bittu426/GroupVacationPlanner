@@ -118,6 +118,8 @@ Distributed under the Apache License. See `LICENSE.txt` for more information.
 Hunter Stone - hunter.stone1002@gmail.com
 <br />
 Adrian Searles - asearle@g.clemson.edu
+<br />
+Chaitanya Mandru - cmandru@g.clemson.edu
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
