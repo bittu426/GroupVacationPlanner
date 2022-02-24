@@ -101,6 +101,8 @@ See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issue
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- WIREFRAMES -->
+## Wireframes
 
 
 <!-- LICENSE -->
