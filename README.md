@@ -103,8 +103,17 @@ See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issue
 
 <!-- WIREFRAMES -->
 ## Wireframes
-
+**SignUp**
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/signup.png?raw=true)
+<br />
+**Login**
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/login.png?raw=true)
+**HomePage**
 ![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/HomePage.png?raw=true)
+<br />
+
+
 
 
 <!-- LICENSE -->
