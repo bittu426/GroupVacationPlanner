@@ -115,6 +115,10 @@ See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issue
 <br />
 ![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/HomePage.png?raw=true)
 <br />
+**Group Messaging**
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/GroupMessagingWireframe.png?raw=true)
+<br />
 
 
 
