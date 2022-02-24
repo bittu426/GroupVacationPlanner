@@ -144,6 +144,8 @@ Hunter Stone - hunter.stone1002@gmail.com
 Adrian Searles - asearle@g.clemson.edu
 <br />
 Chaitanya Mandru - cmandru@g.clemson.edu
+<br /> 
+Ryan Le - rfle@clemson.edu
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
