@@ -104,7 +104,7 @@ See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issue
 <!-- WIREFRAMES -->
 ## Wireframes
 
-!(https://github.com/[PlusUltra404]/[GroupVacationPlanner]/blob/[main]/HomePage.png?raw=true)
+![alt text](https://github.com/[PlusUltra404]/[GroupVacationPlanner]/blob/[main]/Wireframes/HomePage.png?raw=true)
 
 <!-- LICENSE -->
 ## License
