@@ -119,6 +119,10 @@ See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issue
 <br />
 ![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/GroupMessagingWireframe.png?raw=true)
 <br />
+**Polling Feature**
+<br />
+![poll wireframe](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/Wireframe1-poll.png?raw=true)
+<br />
 
 
 
