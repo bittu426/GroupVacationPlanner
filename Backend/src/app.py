@@ -3,9 +3,9 @@ from flask.cli import FlaskGroup
 from flask_cors import CORS
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
-from .models import Answer, Exam, Session, engine, Base
-from .models import User,Question
-from .auth import AuthError, requires_auth
+from .models import Session, engine, Base
+from .models import User
+from .auth import API_AUDIENCE, AuthError, requires_auth
 from urllib.request import Request, urlopen
 import json
 
@@ -24,11 +24,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
-
 # creating the Flask application
 server = Flask(__name__)
 server.config.from_object("src.config.Config")
 
+CORS(server)
+cli = FlaskGroup(server)
 
 oauth = OAuth(server)
 
@@ -38,18 +39,25 @@ session = Session()
 
 auth0 = oauth.register(
     'auth0',
-    client_id='kYsfByzSV4rxmTJSX6jmaQumLeJZVjoM',
-    client_secret='fDR6hxNSGJApKrxTdZyD2EC4ezV6oV4F5AlM_lm_Pvgb8UijifazIeJ8b3HzBEUL',
-    api_base_url='https://dev-4-frsuj0.us.auth0.com',
-    access_token_url='https://dev-4-frsuj0.us.auth0.com/oauth/token',
-    authorize_url='https://dev-4-frsuj0.us.auth0.com/authorize',
+    client_id='ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1',
+    client_secret='KO-0ygg7LP9AVLRky1bpgqN_Y6SWE7DiPOJn164oFGXYUk-MvmA3ScXfxdEjc0R8',
+    api_base_url='https://dev-dm6nugc4.us.auth0.com',
+    access_token_url='https://dev-dm6nugc4.us.auth0.com/oauth/token',
+    authorize_url='https://dev-dm6nugc4.us.auth0.com/authorize',
     client_kwargs={
-        'scope': 'Manage exams',
+        
     },
 )
 
 
 
+
+#API
+
+
+@server.route('/')
+def home():
+     return jsonify({'result': 200})
 
 
 @server.route('/register', methods=['POST'])
@@ -89,7 +97,7 @@ def login():
         status = True
     else:
         status = False
-    return auth0.authorize_redirect(redirect_uri='http://localhost:4200')
+    return auth0.authorize_redirect(redirect_uri='http://localhost:4200', audience = API_AUDIENCE)
 
 @server.route('/logout')
 def logout():
@@ -97,5 +105,27 @@ def logout():
     session.clear()
     session.pop('logged_in', None)
     # Redirect user to logout endpoint
-    params = {'returnTo': url_for('home', _external=True), 'client_id': 'kYsfByzSV4rxmTJSX6jmaQumLeJZVjoM'}
-    return redirect('https://dev-4-frsuj0.us.auth0.com' + '/v2/logout?' + urlencode(params))
+    params = {'returnTo': url_for('home', _external=True), 'client_id': 'ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1'}
+    return redirect('https://https://dev-dm6nugc4.us.auth0.com' + '/v2/logout?' + urlencode(params))
+
+@server.route('/callback')
+def callback_handling():
+    # Handles response from token endpoint
+    auth0.authorize_access_token()
+    resp = auth0.get('userinfo')
+    userinfo = resp.json()
+
+    # Store the user information in flask session.
+    session['jwt_payload'] = userinfo
+    session['profile'] = {
+        'user_id': userinfo['sub'],
+        'name': userinfo['name'],
+        'picture': userinfo['picture']
+    }
+    return redirect('/dashboard')
+
+@server.errorhandler(AuthError)
+def handle_auth_error(ex):
+    response = jsonify(ex.error)
+    response.status_code = ex.status_code
+    return response
