@@ -12,7 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 #Database variables
 db_url = 'database:5432'
-db_name = 'onlineexam-database-1'
+db_name = 'VacationIO'
 db_user = 'postgres'
 db_password = 'postgres'
 
