@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from .models import Session, engine, Base
-from .models import User, Group
+from .models import User, Group, Group_Member
 from .auth import API_AUDIENCE, AuthError, requires_auth
 from urllib.request import Request, urlopen
 import json
@@ -87,9 +87,33 @@ def get_started():
 
     return jsonify({'result': status})
 
-@server.route('/join', methods=['POST'])
+@server.route('/join')
+#@requires_auth
 def joinGroup():
-    
+    json_data = request.json
+    # receives data from frontend. parses data into columns to be inputted
+    member = Group_Member(
+        group_id = json_data['access_key'],
+        user_id = json_data['user_id'],
+        role_id = json_data['role_id'],
+        status = json_data['status']
+    )
+    try:
+        # persist group 
+        session.add(member)
+        session.commit()
+        status = 'succes'
+    except:
+        status = 'error unknown error'
+    session.close()
+
+    return jsonify({'result': status})
+
+@server.route('/join', methods=['POST'])
+#@requires_auth
+def joinGroup():
+    json_data = request.json
+    #
     return render_template('join.html')
 
 @server.route('/send-access-key')
