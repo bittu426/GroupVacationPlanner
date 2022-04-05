@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from .models import Session, engine, Base
-from .models import User
+from .models import User, Group
 from .auth import API_AUDIENCE, AuthError, requires_auth
 from urllib.request import Request, urlopen
 import json
@@ -57,7 +57,48 @@ auth0 = oauth.register(
 
 @server.route('/')
 def home():
-     return jsonify({'result': 200})
+    return render_template('Dashboard.html')
+     
+@server.route('/Welcome')
+def home():
+    return render_template('Intro.html')
+
+@server.route('/get-started', methods=['POST'])
+# @requires_auth
+def get_started():
+    json_data = request.json
+    #mount group object
+    group = Group(
+        created_by = json_data['creaated_by'],
+        title = json_data['title'],
+        meta_title = json_data['meta_title'],
+        slug = json_data['slug'],
+        status = json_data['status'],
+        profile = json_data['profile']
+    )
+    try:
+        # persist group 
+        session.add(group)
+        session.commit()
+        status = 'succes'
+    except:
+        status = 'error unknown error'
+    session.close()
+
+    return jsonify({'result': status})
+
+@server.route('/join', methods=['POST'])
+def joinGroup():
+    
+    return render_template('join.html')
+
+@server.route('/send-access-key')
+def home():
+    return render_template('join.html')
+
+@server.route('/send-invite')
+def home():
+    return render_template('Intro.html')
 
 
 @server.route('/register', methods=['POST'])
@@ -82,7 +123,7 @@ def register():
      # return created user
 
     session.close()
-    return jsonify({'result': status})
+    return redirect('/callback')
 
    
 

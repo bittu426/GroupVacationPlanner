@@ -110,3 +110,189 @@ class User(Base):
 
     def __repr__(self):
         return '<User {0}>'.format(self.email)
+
+class Group(Base):
+    """Group table."""
+
+    __tablename__ = "group"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    created_by = Column(Integer)
+    title = Column(String(255))
+    meta_title = Column(String(255))
+    slug = Column(String)
+    status = Column(Integer)
+    profile = Column(Text)
+    membercount = Column(Integer, autoincrement = "auto")
+
+
+    def __init__(self,  created_by , title ,meta_title, slug,status, profile):
+        
+        self.created_by = created_by
+        self.title = title
+        self.meta_title = meta_title
+        self.slug - slug
+        self.status = status
+        self.profile = profile
+
+
+class Group_Member(Base):
+    """Group member table."""
+
+    __tablename__ = "group_member"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    group_id = Column(Integer)
+    user_id = Column(Integer)
+    role_id = Column(Integer)
+    status = Column(Integer)
+    
+
+    def __init__(self,  group_id , user_id ,role_id,status):
+        
+        self.group_id = group_id
+        self.user_id = user_id
+        self.role_id - role_id
+        self.status = status
+
+class Group_Message(Base):
+    """Message acount for group"""
+
+    __tablename__ = "group_message"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    group_id = Column(Integer,nullable=False)
+    user_id = Column(Integer,nullable=False)
+    message = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, group_id, user_id, message, created_at, updated_at):
+
+        self.group_id = group_id
+        self.user_id = user_id
+        self.message = message
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+class Group_Post(Base):
+    """Message acount for group"""
+
+    __tablename__ = "group_post"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    group_id = Column(Integer,nullable=False)
+    user_id = Column(Integer,nullable=False)
+    message = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, group_id, user_id, message, created_at, updated_at):
+
+        self.group_id = group_id
+        self.user_id = user_id
+        self.message = message
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+## Polling and Survey Database Schema
+
+class Poll(Base):
+    """Poll table"""
+
+    __tablename__ = "Poll"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    host_id = Column(Integer,nullable=False)
+    title = Column(String(255))
+    meta_title = Column(String(255))
+    slug = Column(String)
+    summary = Column(String)
+    type = Column(Integer)
+    published = Column(Integer)
+    starts_at = Column(DateTime)
+    ends_at = Column(DateTime)
+    content = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, host_id, title, meta_title, slug,summary, type, published,starts_at,ends_at,content,created_at ,updated_at):
+
+        self.host_id = host_id
+        self.title = title
+        self.meta_title = meta_title
+        self.slug = slug
+        self.summary = summary
+        self.type = type
+        self.published = published
+        self.starts_at = starts_at
+        self.ends_at = ends_at
+        self.content = content
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+class Poll_Question(Base):
+    """Poll Question table"""
+
+    __tablename__ = "Poll_Question"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    poll_id = Column(Integer,nullable=False)
+    type = Column(String)
+    content = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, poll_id, type,content,created_at ,updated_at):
+
+        self.poll_id = poll_id
+        self.type = type
+        self.content = content
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+class Poll_Answer(Base):
+    """Poll Answer table"""
+
+    __tablename__ = "Poll_Answer"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    poll_id = Column(Integer,nullable=False)
+    question_id = Column(Integer,nullable=False)
+    content = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, poll_id, question_id,content,created_at ,updated_at):
+
+        self.poll_id = poll_id
+        self.question_id = question_id
+        self.content = content
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+class Poll_Vote(Base):
+    """Poll Vote table"""
+
+    __tablename__ = "Poll_Vote"
+
+    id = Column(Integer, primary_key=True, autoincrement="auto")
+    poll_id = Column(Integer,nullable=False)
+    question_id = Column(Integer,nullable=False)
+    answer_id = Column(Integer,nullable=False)
+    user_id = Column(Integer)
+    content = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
+    def __init__(self, poll_id, question_id,answer_id,user_id, content,created_at ,updated_at):
+
+        self.poll_id = poll_id
+        self.question_id = question_id
+        self.answer_id = answer_id
+        self.user_id = user_id
+        self.content = content
+        self.created_at = created_at
+        self.updated_at = updated_at
+
+
