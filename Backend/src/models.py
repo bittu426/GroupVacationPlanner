@@ -2,6 +2,7 @@
 from array import array
 from ast import Str
 from datetime import datetime
+from os import access
 from sqlite3 import DatabaseError
 from typing import Text
 from unicodedata import category
@@ -123,15 +124,17 @@ class Group(Base):
     slug = Column(String)
     status = Column(Integer)
     profile = Column(Text)
+    access_key = Column(String(255))
     membercount = Column(Integer, autoincrement = "auto")
 
 
-    def __init__(self,  created_by , title ,meta_title, slug,status, profile):
+    def __init__(self,  created_by ,access_key, title ,meta_title, slug,status, profile):
         
         self.created_by = created_by
         self.title = title
         self.meta_title = meta_title
         self.slug - slug
+        self.access_key = access_key
         self.status = status
         self.profile = profile
 
