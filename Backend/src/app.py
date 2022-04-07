@@ -1,6 +1,7 @@
 # coding=utf-8
 from flask.cli import FlaskGroup
 from flask_cors import CORS
+from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from .models import Session, engine, Base

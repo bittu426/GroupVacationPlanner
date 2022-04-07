@@ -1,21 +1,37 @@
 import React from "react";
+import {
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    NavBtn,
+    NavBtnLink,
+  } from './NavbarElements';
 
-function Navbar() {
+
+  export default function Navbar() {
+   
+
     return (
-        <div className="w3-bar w3-black">
-            <a className="w3-bar-item w3-button" href="/">
-                Quickr
-            </a>
-            <div style={{ float: "right" }}>
-                <a className="w3-bar-item w3-button" href="/">
-                    Login
-                </a>
-                <a className="w3-bar-item w3-button" href="/">
-                    Register
-                </a>
-            </div>
-        </div>
-    );
+        <div>
+      <Nav>
+        <Bars />
+  
+        <NavMenu>
+         {/* <NavLink to='/login' activeStyle>
+            Login
+          </NavLink>
+    */}
+          <NavLink to='/registration' activeStyle>
+            Registration
+          </NavLink>
+          {/* Second Nav */}
+          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+        </NavMenu>
+        <NavBtn>
+          <NavBtnLink to='/login'>Sign In</NavBtnLink>
+        </NavBtn>
+      </Nav>
+    </div>
+  )
 }
-
-export default Navbar;

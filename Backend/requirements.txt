@@ -9,6 +9,7 @@ python-jose==3.3.0
 python-dotenv
 authlib
 six
+flask_migrate
 flask_sqlalchemy
 Flask-Migrate==1.8.0
 Flask-Script==2.0.5
