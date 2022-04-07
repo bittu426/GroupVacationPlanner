@@ -4,9 +4,9 @@ from ast import Str
 from datetime import datetime
 from os import access
 from sqlite3 import DatabaseError
-from typing import Text
+# from typing import Text
 from unicodedata import category
-from sqlalchemy import MetaData, create_engine, Column, String, Integer, DateTime, select
+from sqlalchemy import MetaData, create_engine, Column, Text, String, Integer, DateTime, select
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy

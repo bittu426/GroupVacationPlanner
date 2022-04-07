@@ -60,9 +60,6 @@ auth0 = oauth.register(
 def home():
     return render_template('Dashboard.html')
      
-@server.route('/Welcome')
-def home():
-    return render_template('Intro.html')
 
 @server.route('/get-started', methods=['POST'])
 # @requires_auth
@@ -110,19 +107,14 @@ def joinGroup():
 
     return jsonify({'result': status})
 
-@server.route('/join', methods=['POST'])
-#@requires_auth
-def joinGroup():
-    json_data = request.json
-    #
-    return render_template('join.html')
+
 
 @server.route('/send-access-key')
-def home():
+def accesskey():
     return render_template('join.html')
 
 @server.route('/send-invite')
-def home():
+def sendinvite():
     return render_template('Intro.html')
 
 
