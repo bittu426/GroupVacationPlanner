@@ -6,6 +6,7 @@ import Login from "./Login";
 import Dashboard from './Dashboard';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Preferences from './Preferences';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 import Registration from "./Registration";

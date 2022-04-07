@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Form , Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { useAuth0 } from "@auth0/auth0-react";
+import APIService from './APIService'
+
+
 
 import { useNavigate } from "react-router-dom";
 //import "./Login.css";
 
-export default function Login() {
+export default function Login(props) {
 
 
     const [username, setUserName] = useState("");
@@ -14,6 +18,7 @@ export default function Login() {
     function handleNew() {
         navigate("/registration");
   }
+
 
     const [email, setEmail] = useState("");
 

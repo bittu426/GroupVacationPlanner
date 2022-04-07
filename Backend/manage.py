@@ -7,6 +7,7 @@ import src.models
 # if needed, generate database schema
 session = src.models.Session()
 
+
 @src.app.cli.command("recreate_db")
 def recreate_db():
     src.models.Base.metadata.drop_all(src.models.engine)
