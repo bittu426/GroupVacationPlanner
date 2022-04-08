@@ -1,15 +1,24 @@
 export default class APIService{
     // Insert an article
-    static InsertArticle(body){
-        return fetch(`http://localhost:5000/login`,{
+    
+    
+    
+
+    static create_user(firstname,lastname,email,username,password){
+        return fetch(`http://localhost:5000/register`,{
             'method':'POST',
-             headers : {
-            'Content-Type':'application/json'
-      },
-      body:JSON.stringify(body)
-    })
-    .then(response => response.json())
-    .catch(error => console.log(error))
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(firstname,lastname,email,username,password)
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error))
     }
 
+    
+
+
 }
+
+

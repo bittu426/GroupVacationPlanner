@@ -10,22 +10,18 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {
 
-
+    
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [usertype, setUser] = useState("");
     const navigate = useNavigate();
+    const [errorMessages, setErrorMessages] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     function handleNew() {
         navigate("/registration");
   }
 
 
-    const [email, setEmail] = useState("");
-
-
-    const [errorMessages, setErrorMessages] = useState({});
-
-    const [isSubmitted, setIsSubmitted] = useState(false);
 
         // Generate JSX code for error message
     const renderErrorMessage = (name) =>
@@ -36,11 +32,14 @@ export default function Login(props) {
     const handleSubmit = (event) => {
     // Prevent page reload
     event.preventDefault();
+    
     };
 
     function validateForm() {
 
-        return email.length > 0 && password.length > 0;
+
+
+        return username.length > 0 && password.length > 0;
     
       }
 

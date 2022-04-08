@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { Text } from "react-native";
+import APIService from './APIService'
+
 
 import zxcvbn from "zxcvbn";
 
@@ -65,11 +67,31 @@ export default function Registration() {
         }
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-       
-    }
+    const [data, setdata] = useState({
+      firstname: "",
+      lastname: "",
+      password: "",
+      email: "",
+      username: "",
+  });
 
+    function handleSubmit(event) {
+      event.preventDefault();
+      useEffect(() => {
+        fetch("/registration")
+        .then(response => response.json())
+            // 4. Setting *dogImage* to the image url that we received from the response above
+        .then(data => setDogImage(data.message))
+      },[])
+    
+      APIService.create_user(firstname,lastname,email,username,password)
+      .then(() => {
+            navigate({
+              pathname: "/home",
+              
+            })
+        })
+    }
 
 
 

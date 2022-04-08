@@ -123,7 +123,7 @@ def register():
     json_data = request.json
       # mount User object
     user = User(
-        id = json_data['id'],
+
         username=json_data['username'],
         password=json_data['password'],
         email=json_data['email'],
