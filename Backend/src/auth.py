@@ -10,7 +10,7 @@ from urllib.request import urlopen
 # Three constants to communicate with Auth0 to validate users. ( Must replace later with values of our Auth0 account)
 AUTH0_DOMAIN = 'dev-dm6nugc4.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://VacationIO.com'
+API_AUDIENCE = 'https://vacation-planner.com/api/'
 
 #This represents errors originated in this module
 class AuthError(Exception):

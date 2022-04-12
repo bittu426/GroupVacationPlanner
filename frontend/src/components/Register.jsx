@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { Text } from "react-native";
-import APIService from './APIService'
+
 
 
 import zxcvbn from "zxcvbn";
 
 
-export default function Registration() {
+export default function Register(props) {
 
     const [username, setUserName] = useState("");
     const [firstname, setFirstName] = useState("");
@@ -16,6 +16,9 @@ export default function Registration() {
     const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setcPassword] = useState("");
+    const [mobile, setMobile] = useState("5555555555");
+    const [intro, setIntro] = useState("...");
+    const [profile, setProfile] = useState("...");
     const [myText, setMyText] = useState("");
     const minStrength = 3,thresholdLength = 7;
     const strengthLabels = ["Very Weak", "Weak", "Fair", "Strong", "Very Strong"];
@@ -58,8 +61,6 @@ export default function Registration() {
         setcPassword(props);
         const pass = props;
         const pass1 = password;
-        console.log(password);
-        console.log(pass);
         if (pass === password) {
           setMyText("All Good!");
         } else {
@@ -67,24 +68,12 @@ export default function Registration() {
         }
     }
 
-    const [data, setdata] = useState({
-      firstname: "",
-      lastname: "",
-      password: "",
-      email: "",
-      username: "",
-  });
+    
 
     function handleSubmit(event) {
       event.preventDefault();
-      useEffect(() => {
-        fetch("/registration")
-        .then(response => response.json())
-            // 4. Setting *dogImage* to the image url that we received from the response above
-        .then(data => setDogImage(data.message))
-      },[])
     
-      APIService.create_user(firstname,lastname,email,username,password)
+      props.apiservice.create_user(firstname,lastname,email,username,password,mobile,intro,profile)
       .then(() => {
             navigate({
               pathname: "/home",
@@ -152,9 +141,22 @@ export default function Registration() {
                         <FormControl
                         type="text"
                         name="email"
-                        placeholder="email..."
+                        placeholder=" "
                         value={email}
                         onChange={(e) => setemail(e.target.value)}
+                        />
+                    </div>
+                    </FormGroup>
+                    <FormGroup controlId="mobile">
+                    <div>
+                        <FormLabel>mobile</FormLabel>
+                        <FormControl
+                        autoFocus
+                        type="text"
+                        name="mobile"
+                        placeholder= "Optional"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
                         />
                     </div>
                     </FormGroup>
@@ -165,7 +167,7 @@ export default function Registration() {
                         type="password"
                         name="password"
                         value={password}
-                        placeholder="password..."
+                        placeholder=" "
                         onChange={(e) => validatePasswordStrong(e.target.value)}
                         />
                     </div>

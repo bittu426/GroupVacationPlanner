@@ -10,7 +10,7 @@ export { default as Login } from "./components/Login";
 
 
 const rootElement = document.getElementById("root");
-ReactDOM.createRoot(
+ReactDOM.render(
   <BrowserRouter>
   <Auth0Provider
     domain="dev-dm6nugc4.us.auth0.com"

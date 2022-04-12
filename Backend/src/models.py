@@ -81,19 +81,19 @@ class User(Base):
     password = Column(String, nullable=False)
     email = Column(String(255), unique=True, nullable=False)
     mobile = Column(String(255))
-    first_name = Column(String(255))
-    last_name = Column(String(255))
+    firstname = Column(String(255))
+    lastname = Column(String(255))
     intro = Column(Text)
     profile = Column(Text)
 
-    def __init__(self,  username, password,email,mobile, first_name,last_name, intro, profile):
+    def __init__(self,  username, password,email,mobile, firstname,lastname, intro, profile):
         
         self.username = username
         self.password = password
         self.email = email
-        self.mobile - mobile
-        self.first_name = first_name
-        self.last_name = last_name
+        self.mobile = mobile
+        self.firstname = firstname
+        self.lastname = lastname
         self.intro = intro
         self.profile = profile
     

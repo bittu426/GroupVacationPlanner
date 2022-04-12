@@ -18,7 +18,7 @@ RUN pip3 install psycopg2-binary
 RUN pipenv install sqlalchemy psycopg2-binary
 
 EXPOSE 5000
-
+CMD ["nginx", "-c", "./nginx/conf"]
 
 # run entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]

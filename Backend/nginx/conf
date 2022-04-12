@@ -4,9 +4,9 @@ upstream postgres {
 
 server {
     listen       80;
-    server_name  localhost;
-    location / {
-        proxy_pass   http://app:8000;
+    server_name  flask-api;
+    location /register {
+        proxy_pass   http://flask-api:5000/register;
     }
     location /hit {
         proxy_pass   http://app:8000/visitor;
@@ -15,3 +15,4 @@ server {
         proxy_pass   http://app:8000/visitor/reset;
     }
 }
+
