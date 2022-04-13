@@ -6,7 +6,7 @@ import NavMenu from "./NavMenu";
 import Login from "./Login";
 import APIService from './APIService'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+
 import Register from "./Register";
 
 
@@ -19,7 +19,7 @@ const apiservice = new APIService() ;
             <h2>Welcome to React Router Tutorial</h2>
             
             <Routes>
-                <Route path="/" element={<NavMenu /> ,<Home />} />
+                <Route path="/" element={<NavMenu />} />
                     <Route path="/login" element={<Login apiservice = {apiservice}  />} />
                     <Route path="/register" element={<Register apiservice = {apiservice} />} />
                 
