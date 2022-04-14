@@ -15,12 +15,17 @@ RUN npm install --silent
 
 # add app
 COPY . ./
-
+FROM nginx:alpine
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3000
+EXPOSE 80
 
 
 
 # start app
 CMD ["npm", "start"]
+
+
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const baseURL = "http://flask-api:5000";
+Authorization: Bearer <access_token>
 
 export default class APIService{
      

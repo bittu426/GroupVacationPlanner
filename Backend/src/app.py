@@ -1,4 +1,5 @@
 # coding=utf-8
+from datetime import timedelta, datetime, timezone
 from flask.cli import FlaskGroup
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -6,9 +7,10 @@ from flask import Flask, jsonify, request,redirect,render_template, session, url
 from sqlalchemy import null, select
 from .models import Session, engine, Base
 from .models import User, Group, Group_Member
-from .auth import API_AUDIENCE, AuthError, requires_auth
 from urllib.request import Request, urlopen
 import json
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager
 
 
 #Imports for connecting backend to auth0
@@ -20,7 +22,7 @@ from werkzeug.exceptions import HTTPException
 from dotenv import load_dotenv, find_dotenv
 from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
-from flask_sqlalchemy import SQLAlchemy
+from .auth import API_AUDIENCE, AuthError, requires_auth
 
 
 
@@ -28,33 +30,45 @@ from flask_sqlalchemy import SQLAlchemy
 # creating the Flask application
 server = Flask(__name__)
 server.config.from_object("src.config.Config")
-
+server.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+jwt = JWTManager(server)
 CORS(server)
 cli = FlaskGroup(server)
-
-oauth = OAuth(server)
 
 
 
 session = Session()
 
-auth0 = oauth.register(
-    'auth0',
-    client_id='ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1',
-    client_secret='KO-0ygg7LP9AVLRky1bpgqN_Y6SWE7DiPOJn164oFGXYUk-MvmA3ScXfxdEjc0R8',
-    api_base_url='https://dev-dm6nugc4.us.auth0.com',
-    access_token_url='https://dev-dm6nugc4.us.auth0.com/oauth/token',
-    authorize_url='https://dev-dm6nugc4.us.auth0.com/authorize',
-    client_kwargs={
-        
-    },
-)
-
-
 
 
 #API
+@server.after_request
+def refresh_expiring_jwts(response):
+    try:
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            data = response.get_json()
+            if type(data) is dict:
+                data["access_token"] = access_token 
+                response.data = json.dumps(data)
+        return response
+    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original respone
+        return response
 
+@server.route('/token', methods=["POST"])
+def create_token():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    if email != "test" or password != "test":
+        return {"msg": "Wrong email or password"}, 401
+
+    access_token = create_access_token(identity=email)
+    response = {"access_token":access_token}
+    return response
 
 @server.route('/')
 def home():
@@ -127,8 +141,11 @@ def register():
         username=json_data['username'],
         password=json_data['password'],
         email=json_data['email'],
-        first_name=json_data['first_name'],
-        last_name=json_data['last_name']        
+        firstname=json_data['firstname'],
+        lastname=json_data['lastname'],
+        mobile=json_data['mobile'],
+        intro=json_data['intro'],
+        profile=json_data['profile']       
     )
     try:
         # persist user
@@ -163,8 +180,11 @@ def logout():
     session.clear()
     session.pop('logged_in', None)
     # Redirect user to logout endpoint
-    params = {'returnTo': url_for('home', _external=True), 'client_id': 'ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1'}
-    return redirect('https://https://dev-dm6nugc4.us.auth0.com' + '/v2/logout?' + urlencode(params))
+    response = jsonify({"msg": "logout successful"})
+    unset_jwt_cookies(response)
+    return response
+   # params = {'returnTo': url_for('home', _external=True), 'client_id': 'ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1'}
+   # return redirect('https://https://dev-dm6nugc4.us.auth0.com' + '/v2/logout?' + urlencode(params))
 
 @server.route('/callback')
 def callback_handling():
