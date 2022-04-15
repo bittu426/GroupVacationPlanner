@@ -10,10 +10,10 @@ export default class APIService{
     }
 
     login(user, password){
-        return axios.post(`/token/`, {username: user, password: password})
+        return axios.post(`/api/token/`, {username: user, password: password})
     }
 
-    logout() {
+/*    logout() {
         this.user_token = 0;
         this.config = {
             headers: {
@@ -22,7 +22,7 @@ export default class APIService{
         }
     }
 
-    
+  */  
 
 
 }

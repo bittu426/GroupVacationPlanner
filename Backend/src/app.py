@@ -69,12 +69,18 @@ def refresh_expiring_jwts(response):
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if email != "test" or password != "test":
-        return {"msg": "Wrong email or password"}, 401
 
     access_token = create_access_token(identity=email)
+    json_data = request.json
+    user = User.query.filter_by(email=json_data['email']).first()
+    if user(
+            user.password, json_data['password']):
+        session['logged_in'] = True
+        status = True
+    else:
+        status = False
     response = {"access_token":access_token}
-    return response
+    return jsonify({'result': status})
 
 @server.route('/api', methods=["POST"])
 def home():

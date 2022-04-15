@@ -10,12 +10,12 @@ import NavMenu from "./NavMenu";
 import Login from "./Login";
 import APIService from './APIService'
 import useToken from './useToken'
-import Header from './Header'
+import Profile from './Profile'
 
 const apiservice = new APIService() ;
-const { token, removeToken, setToken } = useToken();
-  class App extends Component {
-    render() {
+
+  function App() {
+    const { token, removeToken, setToken } = useToken();
       return (
         <div id="App">
           <NavMenu token={removeToken}/>
@@ -41,6 +41,6 @@ const { token, removeToken, setToken } = useToken();
             
         </div>
       );
-    }
+    
   }
   export default App;
