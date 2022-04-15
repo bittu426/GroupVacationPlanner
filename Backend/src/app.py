@@ -59,7 +59,7 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original respone
         return response
 
-@server.route('/token', methods=["POST"])
+@server.route('/api/token', methods=["POST"])
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
@@ -75,7 +75,7 @@ def home():
     return render_template('Dashboard.html')
      
 
-@server.route('/get-started', methods=['POST'])
+@server.route('/api/get-started', methods=['POST'])
 # @requires_auth
 def get_started():
     json_data = request.json
@@ -99,7 +99,7 @@ def get_started():
 
     return jsonify({'result': status})
 
-@server.route('/join')
+@server.route('/api/join')
 #@requires_auth
 def joinGroup():
     json_data = request.json
@@ -123,16 +123,16 @@ def joinGroup():
 
 
 
-@server.route('/send-access-key')
+@server.route('/api/send-access-key')
 def accesskey():
     return render_template('join.html')
 
-@server.route('/send-invite')
+@server.route('/api/send-invite')
 def sendinvite():
     return render_template('Intro.html')
 
 
-@server.route('/register', methods=['POST'])
+@server.route('/api/register', methods=['POST'])
 def register():
     json_data = request.json
       # mount User object
@@ -162,7 +162,7 @@ def register():
    
 
 # Routes for login, callback 
-@server.route('/login')
+@server.route('/api/login')
 def login():
     json_data = request.json
     user = User.query.filter_by(email=json_data['email']).first()
@@ -174,7 +174,7 @@ def login():
         status = False
     return auth0.authorize_redirect(redirect_uri='http://localhost:4200', audience = API_AUDIENCE)
 
-@server.route('/logout')
+@server.route('/api/logout')
 def logout():
     # Clear session stored data
     session.clear()
@@ -186,7 +186,7 @@ def logout():
    # params = {'returnTo': url_for('home', _external=True), 'client_id': 'ECUr7U2H6cH2fdYno1UWDIOaRYwDwsA1'}
    # return redirect('https://https://dev-dm6nugc4.us.auth0.com' + '/v2/logout?' + urlencode(params))
 
-@server.route('/callback')
+@server.route('/api/callback')
 def callback_handling():
     # Handles response from token endpoint
     auth0.authorize_access_token()

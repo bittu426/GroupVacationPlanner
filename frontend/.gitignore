@@ -34,7 +34,7 @@ testem.log
 /dist
 /tmp
 /out-tsc
-
+.venv/
 # IDEs and editors
 /.idea
 .project
