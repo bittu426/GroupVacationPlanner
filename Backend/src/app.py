@@ -39,6 +39,12 @@ cli = FlaskGroup(server)
 
 session = Session()
 
+@server.route('/api/create_db')
+def create_db():
+    Base.metadata.create_all(engine)
+
+    return jsonify({'result'})
+
 
 
 #API
@@ -70,9 +76,11 @@ def create_token():
     response = {"access_token":access_token}
     return response
 
-@server.route('/')
+@server.route('/api', methods=["POST"])
 def home():
-    return render_template('Dashboard.html')
+    data = {"data": "Hello World"}
+    return jsonify(data)
+    
      
 
 @server.route('/api/get-started', methods=['POST'])
@@ -157,7 +165,7 @@ def register():
      # return created user
 
     session.close()
-    return redirect('/callback')
+    return jsonify({'result': status})
 
    
 
