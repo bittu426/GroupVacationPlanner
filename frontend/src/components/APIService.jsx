@@ -10,6 +10,19 @@ export default class APIService{
         ,mobile: mobile, intro: intro, profile: profile})
     }
 
+    login(user, password){
+        return axios.post(`/token/`, {username: user, password: password})
+    }
+
+    logout() {
+        this.user_token = 0;
+        this.config = {
+            headers: {
+                Authorization: 'Bearer ' + props.token
+              }
+        }
+    }
+
     
 
 

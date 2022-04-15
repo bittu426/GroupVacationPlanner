@@ -30,6 +30,14 @@ export default function Login(props) {
     );
 
     const handleSubmit = (event) => {
+
+        props.apiservice.login(username,password)
+        .then(() => {
+            navigate({
+              pathname: "/home",
+              
+            })
+        })
     // Prevent page reload
     event.preventDefault();
     
@@ -68,7 +76,7 @@ return (
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 </Form.Group>
-                <Button variant="primary" block size="lg" type="submit" disabled={!validateForm()}>
+                <Button onClick={handleSubmit} variant="primary" block size="lg" type="submit" disabled={!validateForm()}>
                     Login
                 </Button>
                 
