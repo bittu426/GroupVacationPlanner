@@ -20,16 +20,16 @@ import json
 from os import environ as env
 from werkzeug.exceptions import HTTPException
 from dotenv import load_dotenv, find_dotenv
-from authlib.integrations.flask_client import OAuth
+# from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
-from .auth import API_AUDIENCE, AuthError, requires_auth
+# from .auth import API_AUDIENCE, AuthError, requires_auth
 
 
 
 
 # creating the Flask application
 server = Flask(__name__)
-server.config.from_object("src.config.Config")
+server.config.from_object("config.Config")
 server.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(server)
 CORS(server)
@@ -202,8 +202,3 @@ def callback_handling():
     }
     return redirect('/dashboard')
 
-@server.errorhandler(AuthError)
-def handle_auth_error(ex):
-    response = jsonify(ex.error)
-    response.status_code = ex.status_code
-    return response
