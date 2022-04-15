@@ -3,7 +3,7 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 //import './NavMenu.css';
 
-export default function NavMenu() {
+export default function NavMenu(props) {
 
 
   //export class NavMenu extends Component {
