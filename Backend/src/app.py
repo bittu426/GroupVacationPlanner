@@ -5,8 +5,8 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
-from .models import Session, engine, Base
-from .models import User, Group, Group_Member
+from models import Session, engine, Base
+from models import User, Group, Group_Member
 from urllib.request import Request, urlopen
 import json
 from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
