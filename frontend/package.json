@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://18.224.195.130:5000",
   "dependencies": {
     "@fullcalendar/daygrid": "^5.11.0",
     "@fullcalendar/interaction": "^5.11.0",
