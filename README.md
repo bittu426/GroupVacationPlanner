@@ -2,7 +2,7 @@
 
 
   <p align="center">
-    Advanced Vacation Planner, allowing multiple people to colaborate, as well as providing useful data for financing the trip.
+    This is a Group Vacation Planner, built to allow a group to effectively plan a vacation together.
     <br />
     <a href="https://github.com/PlusUltra404/GroupVacationPlanner"><strong>Explore the docs »</strong></a>
     <br />
@@ -57,8 +57,10 @@ This is a vacation planner that allows for groups to develop a plan together, fe
 
 ### Built With
 
-* Android Studio
-* Beautiful Soup Web Parser
+* React.js
+* Docker
+* Kayak API
+* Others
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -93,9 +95,9 @@ To get a local copy up and running follow these simple example steps.
 
 - [ ] Weather API implemented
 - [ ] Voting feature implemented
-    - [ ] Login feature implemented
-- [ ] Local hotel price API implemented
-    - [ ] Flight cost API implemented
+    - [X ] Login feature implemented
+- [X ] Local hotel price API implemented
+    - [X ] Flight cost API implemented
 
 See the [open issues](https://github.com/PlusUltra404/GroupVacationPlanner/issues) for a full list of proposed features (and known issues).
 
