@@ -27,8 +27,9 @@ function App() {
       <div id="App">
         <Routes>
       <Route path="/login" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} />} />
-      <Route path="/" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} /> } />
+      <Route path="/" element={<Header apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} /> } />
       <Route path="/register" element={<Register apiservice={apiservice} />} />
+      <Route path="/home" element={<Home apiservice={apiservice} />} />
       <Route path="/message" element={<Message apiservice={apiservice} username={username} password={password} />} />
     </Routes>
      {/*}   <NavMenu token={removeToken}/>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
-const Header = () => (
+const Header = (props) => (
   <nav className="nav-header">
     <div className="nav-content">
       <ul className="nav-menu">
@@ -15,10 +15,16 @@ const Header = () => (
             Plan
           </Link>
         </li>
+        <li>
+          <Link to="/message" className="nav-link">
+            messages
+          </Link>
+        </li>
       </ul>
       <button type="button" className="logout-desktop-btn">
         Logout
       </button>
+      
     </div>
   </nav>
 );
