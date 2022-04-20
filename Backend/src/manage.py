@@ -72,33 +72,38 @@ def seed_db():
     ))
     session.add(models.Group_Member(
         group_id=2,
-        user_id=3
+        user_id=3,
+        status=1
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=4
+        user_id=4,
+        status=2
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=3
+        user_id=3,
+        status=2
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=2
+        user_id=2,
+        status=2
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=1
+        user_id=1,
+        status=1
     ))
     session.add(models.Group_Member(
         group_id=2,
-        user_id=4
+        user_id=4,
+        status=2
     ))
     session.add(models.Event(
         user_id=3,
         group_id=2,
         title = "Flight",
-        created_at = DateTime,
         date = "2022-04-10",
         content = "Flight is at 9AM"
         
@@ -107,7 +112,6 @@ def seed_db():
         user_id=1,
         group_id=1,
         title = "Food Tour",
-        created_at = DateTime,
         date = "2022-05-15",
         content = "Go on food tour in japan"
         
