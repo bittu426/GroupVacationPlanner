@@ -5,8 +5,8 @@ from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
-from .models import Session, engine, Base
-from .models import User, Group, Group_Member, Event
+from models import Session, engine, Base
+from models import User, Group, Group_Member, Event
 from urllib.request import  urlopen
 import json
 import requests
@@ -31,8 +31,9 @@ from six.moves.urllib.parse import urlencode
 
 # creating the Flask application
 server = Flask(__name__)
-server.config.from_object("src.config.Config")
+server.config.from_object("config.Config")
 server.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+server.config['SECRET_KEY'] = 'f3cfe9ed8fae309f02079dbf'
 jwt = JWTManager(server)
 CORS(server)
 cli = FlaskGroup(server)
@@ -41,9 +42,6 @@ cli = FlaskGroup(server)
 
 sessiondb = Session()
 
-@server.before_request
-def before_request_func():
-    return {'Allow' : 'POST' }, 200, { 'Access-Control-Allow-Origin': 'http://localhost:3000', 'Access-Control-Allow-Methods' : 'PUT,GET,POST' , 'Access-Control-Allow-Credentials': 'true','Access-Control-Allow-Headers': 'access-control-allow-origin,content-type'}
 
 ############################
 # Routes for messaging
@@ -113,26 +111,27 @@ def refresh_expiring_jwts(response):
         return response
 
 @server.route('/api/token', methods=["POST"])
-@cross_origin(supports_credentials=True)
 def create_token():
     
     
-    email = request.json.get("email", None)
+    Username = request.json.get("username", None)
     password = request.json.get("password", None)
 
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=Username)
     json_data = request.json
-    user = User.query.filter_by(email=json_data['email']).first()
-    if user(
-            user.password, json_data['password']):
+    user = sessiondb.query(User).filter_by(username= Username )
+    Upassword = ' '
+    for key in user:
+        Upassword = key.password
+    if (Upassword == json_data['password']):
         session['logged_in'] = True
         status = True
     else:
         status = False
     response = {"access_token":access_token}
     session['profile'] = {
-        'password': user['password'],
-        'username': user['username'],
+        'password': Upassword,
+        'username': Username,
     }
     return response
 
@@ -249,13 +248,36 @@ def register():
         {'username' : User.username},
         {'email' : User.email},
         {'secret' : User.password},
-    ]
+        ]
+    chat = {'first_name': User.firstname,
+            'last_name' : User.lastname , 
+            'username' : User.username , 
+            'email' : User.email, 
+            'secret' : User.password
+            }
+    url = "https://api.chatengine.io/users/"
+
+    payload={'username': 'dsf',
+            'secret': 'sdfsd',
+            'first_name': 'dsfs',
+            'last_name': 'df',
+            'email': 'sfds'}
+    files=[]
+    headers = {'Private-Key': '99ca68a1-4735-4bb7-8182-52eaa4b095e9'}
+
+    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+     #   r = requests.request("POST", 'https://api.chatengine.io/users/',
+     #           data={'first_name' : User.firstname,
+     #               'last_name' : User.lastname,
+     #               'username' : User.username,
+     #               'email' : User.email,
+     #               'secret' : User.password
+     #               },
+     #           headers={'Private-Key' : '99ca68a1-4735-4bb7-8182-52eaa4b095e9'}
+     #           )
+ 
     try:
-        r = requests.post('https://api.chatengine.io/users/',
-            data=chatuser,
-            headers={'Private-Key' : 'ca-0c4de29c-0ea1-4b4d-99f8-a6cc3f53fe39'}
-        )
-        # persist user
+            # persist user
         sessiondb.add(user)
         sessiondb.commit()
         status = 'success'
@@ -264,8 +286,8 @@ def register():
      # return created user
 
     sessiondb.close()
-    return jsonify({'result': status})
-   
+    return(response.text)
+    #return jsonify({'result': status})
 
 @server.route('/api/logout')
 def logout():
