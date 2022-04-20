@@ -2,7 +2,7 @@
 
 import app
 import models
-
+from sqlalchemy import DateTime
 
 # if needed, generate database schema
 session = models.Session()
@@ -19,7 +19,99 @@ def create_db():
 
 @app.cli.command("seed_db")
 def seed_db():
-    session.add(models.User(email="asearle@g.clemson.edu",first_name="Adrian",last_name="Searles",username="asearle",password="Pspgame12"))
+    #Users
+    session.add(models.User(username="fireguy172",
+        password="Pspgame#12",
+        email="asearle@g.clemson.edu",
+        mobile=" ",
+        firstname="Adrian",
+        lastname="Searles",
+        intro=" ",
+        profile=" ",
+    ))
+   
+    session.add(models.User(username="asearle",
+        password="testuser",
+        email="fireguy172@gmail.com",
+        mobile=" ",
+        firstname="Micheal",
+        lastname="White",
+        intro=" ",
+        profile=" ",
+    ))
+   
+    session.add(models.User(username="shinebright",
+        password="layover",
+        email="asearlee@clemson.edu",
+        mobile=" ",
+        firstname="Kiersten",
+        lastname="Searles",
+        intro=" ",
+        profile=" ",
+    ))
+    
+    session.add(models.User(username="WineMaker",
+        password="BillSucks",
+        email="plant@gmail.com",
+        mobile=" ",
+        firstname="B",
+        lastname="Ineos",
+        intro=" ",
+        profile="Hard working plant manager ",
+    ))
+    #Groups
+    session.add(models.Group(created_by=1,
+        title="Japan Getaway",
+        status=1,
+        profile="Track team vacation ",
+    ))
+    session.add(models.Group(created_by=3,
+        title="Anash Bash",
+        status=0,
+        profile="Bachelorette party ",
+    ))
+    session.add(models.Group_Member(
+        group_id=2,
+        user_id=3
+    ))
+    session.add(models.Group_Member(
+        group_id=1,
+        user_id=4
+    ))
+    session.add(models.Group_Member(
+        group_id=1,
+        user_id=3
+    ))
+    session.add(models.Group_Member(
+        group_id=1,
+        user_id=2
+    ))
+    session.add(models.Group_Member(
+        group_id=1,
+        user_id=1
+    ))
+    session.add(models.Group_Member(
+        group_id=2,
+        user_id=4
+    ))
+    session.add(models.Event(
+        user_id=3,
+        group_id=2,
+        title = "Flight",
+        created_at = DateTime,
+        date = "2022-04-10",
+        content = "Flight is at 9AM"
+        
+    ))
+    session.add(models.Event(
+        user_id=1,
+        group_id=1,
+        title = "Food Tour",
+        created_at = DateTime,
+        date = "2022-05-15",
+        content = "Go on food tour in japan"
+        
+    ))
     session.commit()
 
 

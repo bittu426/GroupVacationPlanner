@@ -17,14 +17,19 @@ import Modal from "./messagepage";
 
 const apiservice = new APIService() ;
 
+
+
 function App() {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const { token, removeToken, setToken } = useToken();
     return (
       <div id="App">
         <Routes>
-      <Route path="/login" element={<Login apiservice={apiservice} />} />
-      <Route path="/" element={<Login apiservice={apiservice} /> } />
+      <Route path="/login" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} />} />
+      <Route path="/" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} /> } />
       <Route path="/register" element={<Register apiservice={apiservice} />} />
+      <Route path="/message" element={<Message apiservice={apiservice} username={username} password={password} />} />
     </Routes>
      {/*}   <NavMenu token={removeToken}/>
         {!token && token!=="" &&token!== undefined?  

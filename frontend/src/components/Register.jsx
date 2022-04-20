@@ -94,7 +94,7 @@ export default function Register(props) {
       )
       .then(() => {
         navigate({
-          pathname: "/home",
+          pathname: "/",
         });
       });
   }

@@ -56,6 +56,7 @@ def chat_screen():
         headers={'User-Name' : session['profile'].get('username'), 'Project-ID' : 'd84aadd4-ad67-4b0b-b507-415a6fb05ae2' , 'User-Secret' : session['profile'].get('password')}
     )
 
+
 ###########################
 # Routes for Calender
 ##########################

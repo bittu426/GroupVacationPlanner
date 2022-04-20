@@ -29,6 +29,9 @@ export default function Login(props) {
     );
 
   const handleSubmit = (event) => {
+
+    props.setUserName(username)
+    props.setPassword(password)
     props.apiservice.login(username, password).then(() => {
       navigate({
         pathname: "/home",
