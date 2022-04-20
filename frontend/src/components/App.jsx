@@ -23,7 +23,7 @@ function App() {
       <div id="App">
         <Routes>
       <Route path="/login" element={<Login apiservice={apiservice} />} />
-      <Route path="/" element={<Calender apiservice={apiservice} /> } />
+      <Route path="/" element={<Login apiservice={apiservice} /> } />
       <Route path="/register" element={<Register apiservice={apiservice} />} />
     </Routes>
      {/*}   <NavMenu token={removeToken}/>
