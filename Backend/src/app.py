@@ -1,16 +1,18 @@
 # coding=utf-8
 from datetime import timedelta, datetime, timezone
 from flask.cli import FlaskGroup
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
-from models import Session, engine, Base
-from models import User, Group, Group_Member
-from urllib.request import Request, urlopen
+from .models import Session, engine, Base
+from .models import User, Group, Group_Member, Event
+from urllib.request import  urlopen
 import json
+import requests
 from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
+
 
 
 #Imports for connecting backend to auth0
@@ -29,7 +31,7 @@ from six.moves.urllib.parse import urlencode
 
 # creating the Flask application
 server = Flask(__name__)
-server.config.from_object("config.Config")
+server.config.from_object("src.config.Config")
 server.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(server)
 CORS(server)
@@ -37,14 +39,59 @@ cli = FlaskGroup(server)
 
 
 
-session = Session()
+sessiondb = Session()
 
-@server.route('/api/create_db')
-def create_db():
-    Base.metadata.create_all(engine)
+@server.before_request
+def before_request_func():
+    return {'Allow' : 'POST' }, 200, { 'Access-Control-Allow-Origin': 'http://localhost:3000', 'Access-Control-Allow-Methods' : 'PUT,GET,POST' , 'Access-Control-Allow-Credentials': 'true','Access-Control-Allow-Headers': 'access-control-allow-origin,content-type'}
 
-    return jsonify({'result'})
+############################
+# Routes for messaging
+############################
+@server.route('/api/chatscreen', methods=['GET'])
+def chat_screen():
+    
+    r = requests.post('https://api.chatengine.io/chats/',
 
+        headers={'User-Name' : session['profile'].get('username'), 'Project-ID' : 'd84aadd4-ad67-4b0b-b507-415a6fb05ae2' , 'User-Secret' : session['profile'].get('password')}
+    )
+
+###########################
+# Routes for Calender
+##########################
+@server.route('/api/calender', methods=['GET'])
+def show_calender():
+    
+    return 'success'
+
+
+@server.route('/api/event',methods=['POST'])
+def create_event():
+    
+    json_data = request.json
+
+    user = User.query.filter_by(username=json_data['user']).first()
+
+
+    #mount event object
+    event = Event(
+        user_id = user.id,
+        group_id =json_data['group_id'],
+        title = json_data['title'],
+        date = json_data['date'],
+        content = json_data['content']
+    )
+
+    try:
+        # persist event
+        sessiondb.add(event)
+        sessiondb.commit()
+        status = 'succes'
+    except:
+        status = 'error unknown error'
+    sessiondb.close()
+    return jsonify({'result': status})
+   
 
 
 #API
@@ -66,7 +113,10 @@ def refresh_expiring_jwts(response):
         return response
 
 @server.route('/api/token', methods=["POST"])
+@cross_origin(supports_credentials=True)
 def create_token():
+    
+    
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
@@ -80,7 +130,11 @@ def create_token():
     else:
         status = False
     response = {"access_token":access_token}
-    return jsonify({'result': status})
+    session['profile'] = {
+        'password': user['password'],
+        'username': user['username'],
+    }
+    return response
 
 @server.route('/api', methods=["POST"])
 def home():
@@ -90,26 +144,42 @@ def home():
      
 
 @server.route('/api/get-started', methods=['POST'])
-# @requires_auth
 def get_started():
     json_data = request.json
     #mount group object
+
+    NewChat = [
+        {'title': json_data['title']},
+        {'is_direct_chat': False},
+    ]
+
+    r = requests.post('https://api.chatengine.io/chats/',
+            data=NewChat,
+            headers={'User-Name' : session['profile'].get('username'), 'Project-ID' : 'd84aadd4-ad67-4b0b-b507-415a6fb05ae2' , 'User-Secret' : session['profile'].get('password')}
+        )
+    print(r.content)
+    data = r.json()
+    print(data)
+
+
     group = Group(
-        created_by = json_data['creaated_by'],
+        created_by = json_data['created_by'],
         title = json_data['title'],
-        meta_title = json_data['meta_title'],
-        slug = json_data['slug'],
         status = json_data['status'],
         profile = json_data['profile']
     )
+    
+
     try:
+        
+
         # persist group 
-        session.add(group)
-        session.commit()
+        sessiondb.add(group)
+        sessiondb.commit()
         status = 'succes'
     except:
         status = 'error unknown error'
-    session.close()
+    sessiondb.close()
 
     return jsonify({'result': status})
 
@@ -121,17 +191,26 @@ def joinGroup():
     member = Group_Member(
         group_id = json_data['access_key'],
         user_id = json_data['user_id'],
-        role_id = json_data['role_id'],
         status = json_data['status']
     )
+
+    NewChat = [
+        {'username': session['profile'].get('username')}
+    ]
     try:
+        #get chat id
+        r = requests.post('https://api.chatengine.io/chats/{{chat_id}}/people/',
+            data=NewChat,
+            headers={'User-Name' : session['profile'].get('username'), 'Project-ID' : 'd84aadd4-ad67-4b0b-b507-415a6fb05ae2' , 'User-Secret' : session['profile'].get('password')}
+        )
+        
         # persist group 
-        session.add(member)
-        session.commit()
+        sessiondb.add(member)
+        sessiondb.commit()
         status = 'succes'
     except:
         status = 'error unknown error'
-    session.close()
+    sessiondb.close()
 
     return jsonify({'result': status})
 
@@ -145,10 +224,13 @@ def accesskey():
 def sendinvite():
     return render_template('Intro.html')
 
-
+############################
+# Register user to app and messaging
+############################
 @server.route('/api/register', methods=['POST'])
 def register():
     json_data = request.json
+    print(json_data)
       # mount User object
     user = User(
 
@@ -161,32 +243,29 @@ def register():
         intro=json_data['intro'],
         profile=json_data['profile']       
     )
+    chatuser = [
+        {'first_name': User.firstname},
+        {'last_name': User.lastname},
+        {'username' : User.username},
+        {'email' : User.email},
+        {'secret' : User.password},
+    ]
     try:
+        r = requests.post('https://api.chatengine.io/users/',
+            data=chatuser,
+            headers={'Private-Key' : 'ca-0c4de29c-0ea1-4b4d-99f8-a6cc3f53fe39'}
+        )
         # persist user
-        session.add(user)
-        session.commit()
+        sessiondb.add(user)
+        sessiondb.commit()
         status = 'success'
     except:
         status = 'this user is already registered'
      # return created user
 
-    session.close()
+    sessiondb.close()
     return jsonify({'result': status})
-
    
-
-# Routes for login, callback 
-@server.route('/api/login')
-def login():
-    json_data = request.json
-    user = User.query.filter_by(email=json_data['email']).first()
-    if user(
-            user.password, json_data['password']):
-        session['logged_in'] = True
-        status = True
-    else:
-        status = False
-    return auth0.authorize_redirect(redirect_uri='http://localhost:4200', audience = API_AUDIENCE)
 
 @server.route('/api/logout')
 def logout():

@@ -13,6 +13,24 @@ export default class APIService{
         return axios.post(`/api/token/`, {username: user, password: password})
     }
 
+
+
+    message(user, password){
+      axios.get(`/api/chatscreen`, {username: user, password: password})
+    }
+
+    joingroup(user, group, status){
+      return axios.post(`/api/get-started`, {user: user, group: group , status: status})
+    }
+
+    creategroup(user , title, status, profile){
+      return axios.post(`/api/get-started`, {created_by: user, title: title , status: status, profile: profile})
+    }
+    
+    save_event(user , title, date, content, group_id){
+      return axios.post(`/api/exam`, {user: user, title: title , date: date, content: content, group_id:group_id})
+    }
+
 /*    logout() {
         this.user_token = 0;
         this.config = {
