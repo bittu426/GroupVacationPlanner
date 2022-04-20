@@ -10,7 +10,7 @@ export default class APIService{
     }
 
     login(user, password){
-        return axios.post(`/api/token/`, {username: user, password: password})
+        return axios.post(`/api/token`, {username: user, password: password})
     }
 
 
