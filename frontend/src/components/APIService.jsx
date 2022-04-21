@@ -28,10 +28,14 @@ export default class APIService{
     }
     
     save_event(user , title, date, content, group_id){
-      return axios.post(`/api/exam`, {user: user, title: title , date: date, content: content, group_id:group_id})
+      return axios.post(`/api/event`, {user: user, title: title , date: date, content: content, group_id:group_id})
     }
 
-/*    logout() {
+    get_event(){
+      axios.post(`/api/events`)
+  }
+
+   /* logout() {
         this.user_token = 0;
         this.config = {
             headers: {
@@ -40,7 +44,7 @@ export default class APIService{
         }
     }
 
-  */  
+    */
 
 
 }

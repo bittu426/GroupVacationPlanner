@@ -10,6 +10,7 @@ from sqlalchemy import MetaData, create_engine, Column, Text, String, Integer, D
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy
+from marshmallow import Schema, fields
 
 
 
@@ -312,5 +313,13 @@ class Event(Base):
         self.title = title
         self.date = date
         self.content = content
+    
+class EventSchema(Schema):
+    id = fields.Number()
+    user_id = fields.Number()
+    group_id = fields.Number()
+    title = fields.Str()
+    date = fields.Str()
+    content = fields.Str()
         
  
