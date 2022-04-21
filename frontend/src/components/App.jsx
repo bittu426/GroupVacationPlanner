@@ -6,12 +6,11 @@ import { Component } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Register from "./Register";
-import NavMenu from "./NavMenu";
 import Login from "./Login";
 import APIService from './APIService'
 import useToken from './useToken'
 import Profile from './Profile'
-import Calender from "./fullcalender";
+
 import Message from './Message'
 import Modal from "./messagepage";
 import Header from "./Header";
@@ -32,6 +31,7 @@ function App() {
           <Route path="/register" element={<Register apiservice={apiservice} />} />
           <Route path="/home" element={<Home  />} />
           <Route path="/plan" element={<Plan />} />
+          <Route path="/plan" render={() => {window.location.href="/Users/asearles/Documents/Github/GroupVacationPlanner/frontend/src/Ka.html"}} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messages" element={<Message apiservice={apiservice} username={username} password={password} />} />
         </Routes>

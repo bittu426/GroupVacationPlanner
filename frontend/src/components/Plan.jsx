@@ -1,6 +1,6 @@
 import Kayak from "./Kayak";
 import Header from "./Header";
-import "./Plan.css";
+import "../styles/Plan.css";
 
 const Plan = () => (
   <div>

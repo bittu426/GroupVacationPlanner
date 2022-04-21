@@ -10,7 +10,7 @@ import {
   FormLabel,
 } from "react-bootstrap";
 
-import "./Home.css";
+import "../styles/Home.css";
 
 export class Home extends Component {
   static displayName = Home.name;
