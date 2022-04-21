@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Calender from './fullcalender';
+import Header from './Header';
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -7,6 +8,7 @@ export class Home extends Component {
   render () {
     return (
       <div>
+        <Header/>
         <h1>Vacation Planner</h1>
         <p>Welcome to the Vacation planner!</p>
         <ul>

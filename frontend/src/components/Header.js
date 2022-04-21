@@ -6,7 +6,7 @@ const Header = (props) => (
     <div className="nav-content">
       <ul className="nav-menu">
         <li>
-          <Link to="/" className="nav-link">
+          <Link to="/home" className="nav-link">
             Home
           </Link>
         </li>
