@@ -62,12 +62,12 @@ def seed_db():
     #Groups
     session.add(models.Group(created_by=1,
         title="Japan Getaway",
-        status=1,
+       
         profile="Track team vacation ",
     ))
     session.add(models.Group(created_by=3,
         title="Anash Bash",
-        status=0,
+        
         profile="Bachelorette party ",
     ))
     session.add(models.Group_Member(

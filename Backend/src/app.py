@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from models import Session, engine, Base
-from models import User, Group, Group_Member, Event
+from models import User, Group, Group_Member, Event, EventSchema
 from urllib.request import  urlopen
 import json
 import requests
@@ -92,6 +92,21 @@ def create_event():
     return jsonify({'result': status})
    
 
+@server.route('/api/events',method=['GET'])
+def get_events():
+     # fetching from the database
+
+    event_objects = sessiondb.query(Event).all()
+    
+    # transforming into JSON-serializable objects
+    schema = EventSchema(many=True)
+    events = schema.dump(event_objects)
+
+
+    # serializing as JSON
+    sessiondb.close()
+    return jsonify(events.data)
+
 
 #API
 @server.after_request
@@ -165,7 +180,6 @@ def get_started():
     group = Group(
         created_by = json_data['created_by'],
         title = json_data['title'],
-        status = json_data['status'],
         profile = json_data['profile']
     )
     

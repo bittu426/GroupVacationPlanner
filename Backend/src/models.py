@@ -121,16 +121,16 @@ class Group(Base):
     id = Column(Integer, primary_key=True, autoincrement="auto")
     created_by = Column(Integer)
     title = Column(String(255))
-    status = Column(Integer)
+    
     profile = Column(Text)
     membercount = Column(Integer, autoincrement = "auto")
 
 
-    def __init__(self,  created_by , title ,status, profile):
+    def __init__(self,  created_by , title , profile):
         
         self.created_by = created_by
         self.title = title
-        self.status = status
+     
         self.profile = profile
 
 
