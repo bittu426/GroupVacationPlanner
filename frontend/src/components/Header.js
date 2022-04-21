@@ -20,6 +20,11 @@ const Header = (props) => (
             messages
           </Link>
         </li>
+        <li>
+          <Link to="/login" className="logout-desktop-btn">
+            login
+          </Link>
+        </li>
       </ul>
       <button type="button" className="logout-desktop-btn">
         Logout
