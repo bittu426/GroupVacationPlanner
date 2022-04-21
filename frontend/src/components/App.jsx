@@ -15,6 +15,7 @@ import Calender from "./fullcalender";
 import Message from './Message'
 import Modal from "./messagepage";
 import Header from "./Header";
+import Plan from "./Plan";
 const apiservice = new APIService() ;
 
 
@@ -26,12 +27,14 @@ function App() {
     return (
       <div id="App">
         <Routes>
-      <Route path="/login" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} />} />
-      <Route path="/" element={<Header apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} /> } />
-      <Route path="/register" element={<Register apiservice={apiservice} />} />
-      <Route path="/home" element={<Home  />} />
-      <Route path="/message" element={<Message apiservice={apiservice} username={username} password={password} />} />
-    </Routes>
+          <Route path="/login" element={<Login apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} />} />
+          <Route path="/" element={<Header apiservice={apiservice} setUserName={setUserName} setPassword={setPassword} /> } />
+          <Route path="/register" element={<Register apiservice={apiservice} />} />
+          <Route path="/home" element={<Home  />} />
+          <Route path="/plan" element={<Plan />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/messages" element={<Message apiservice={apiservice} username={username} password={password} />} />
+        </Routes>
      {/*}   <NavMenu token={removeToken}/>
         {!token && token!=="" &&token!== undefined?  
         <Login setToken={setToken} />

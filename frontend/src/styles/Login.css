@@ -11,9 +11,11 @@
   border-width: 1px;
   border-color: black;
   background-color: white;
-  padding: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   border-style: solid;
-  width: 40vw;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -63,11 +65,12 @@
   font-size: 14px;
   color: #ffffff;
   height: 40px;
-  width: 30%;
+  width: 38%;
   margin-bottom: 2px;
   background-color: #2eba7c;
   border-radius: 8px;
   border: none;
+  padding: 7px;
 }
 .register-text {
   font-size: 13px;
