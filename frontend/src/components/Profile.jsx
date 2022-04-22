@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 
-import "../styles/Plan.css";
+import "../styles/Profile.css";
 
 function Profile(props) {
   const [profileData, setProfileData] = useState(null);

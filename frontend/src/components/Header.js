@@ -16,20 +16,24 @@ const Header = (props) => (
           </Link>
         </li>
         <li>
+          <Link to="/groups" className="nav-link">
+            Groups
+          </Link>
+        </li>
+        <li>
           <Link to="/messages" className="nav-link">
             messages
           </Link>
         </li>
         <li>
-          <Link to="/login" className="logout-desktop-btn">
-            login
+          <Link to="/profile" className="nav-link">
+            Profile
           </Link>
         </li>
       </ul>
       <button type="button" className="logout-desktop-btn">
         Logout
       </button>
-      
     </div>
   </nav>
 );
