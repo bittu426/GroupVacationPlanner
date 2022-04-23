@@ -92,7 +92,7 @@ def create_event():
     return jsonify({'result': status})
    
 
-@server.route('/api/events',method=['GET'])
+@server.route('/api/events',methods=['GET'])
 def get_events():
      # fetching from the database
 

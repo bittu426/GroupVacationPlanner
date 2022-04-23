@@ -32,7 +32,7 @@ export default class APIService{
     }
 
     get_event(){
-      axios.post(`/api/events`)
+      return axios.post(`/api/events`)
   }
 
    /* logout() {
