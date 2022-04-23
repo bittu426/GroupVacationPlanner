@@ -9,6 +9,12 @@ export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [events, setEvents] = useState([]);
   
+  useEffect(() => {
+    props.apiservice.get_event().then((result) => {
+      console.log(result);
+  })
+}); 
+
   function renderEventContent(eventInfo) {
     return (
       <>
@@ -17,6 +23,8 @@ export default function Calender(props) {
       </>
     )
   }
+
+  
   /* const handleClick = (event) => {
     props.apiservice.save_event(props.username, title, date);
     // Prevent page reload

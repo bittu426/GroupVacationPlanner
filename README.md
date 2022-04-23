@@ -79,7 +79,87 @@ To get a local copy up and running follow these simple example steps.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+<b>How to run a project from GitHub locally</b> 
 
+In order to properly run and test the code, you'll need to move the files in the repository to your local machine. You can do this by cloning the repository. First go ahead and fork the repository. This will be your own project. You should find the fork command in the top right of your screen.  Go ahead and click the code button to clone the repo. If you have Github Desktop installed, you can click Open with Github Desktop. This allows you to clone repos to your local machine with minimal hassle. If you do not have Github desktop head to a terminal and issue the command: 
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/GITCOMMAND.jpg)
+<br />
+
+
+with the copied HTTPS URL after git clone. You have now cloned the repo to your local Machine 
+
+ 
+
+ 
+
+ 
+
+<b>Install Dependencies</b> 
+
+In order to run your project, you need to install the dependencies located in the package.json folder. Navigate to the frontend folder in the project and run the command: 
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/NPMINSTALL.jpg)
+<br />
+
+
+This will install all necessary dependencies. If an error occurs use the command "npm install --legacy-peer-deps" instead.  
+
+<b>Update configurations (optional)</b> 
+
+You Shouldn't need to update any folders. There are environmental configurations inside the env.dev folder that may need to be updated for your machine.  
+
+You will need to create your own virtual environment to run the flask application.  
+
+<b>Windows</b> 
+
+Go to your backend/src folder in the project. Make sure you have Python3 installed, and pip installed on your device. run the commands:  
+
+ > pip install virtualenv  
+
+ > virtualenv "name of your virtual environment" 
+
+> “name_of_environment”\Scripts\activate 
+
+> pip install -r requirements.txt 
+
+> deactivate 
+
+This will install a virtual environment into your code, install the necessary dependencies, then close the virtual environment. Note, these commands must be run in the folder that you made the virtual environment in.  
+
+<b>Linux</b> 
+
+Go to your backend/src folder in the project. Make sure you have Python3 installed, and pip installed on your device. run the commands:  
+
+$ sudo apt-get install python-pip 
+
+$ pip install virtualenv 
+
+$ virtualenv virtualenv_name$ virtualenv virtualenv_name 
+
+$ source virtualenv_name/bin/activate 
+
+$ pip3 install -r requirements.txt 
+
+$ deactivate 
+
+<b>Start any dependent applications</b> 
+
+For this application the database is being run through a docker container. In order to run the database, you must download Docker on your local machine and run it. You may also find it helpful to use a database viewer of your choice. We recommend using TablePlus a free database viewing and manipulation tool.  
+
+<b>Start development server</b> 
+
+To start the flask server, go to the location you made the virtual environment and activate it. After type the command: flask run.  
+
+To start the database, go to the root folder of the project and run the command: docker-compose up in the terminal 
+
+Finally start the react frontend by running the command npm start in your frontend folder. 
+
+ 
+
+ 
+
+ 
 
 
 <!-- USAGE EXAMPLES -->
