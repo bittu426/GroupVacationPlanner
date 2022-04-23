@@ -5,3 +5,95 @@
   background: linear-gradient(120deg, #2eba7c, #2ebab7);
   height: 90vh;
 }
+.card {
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: black;
+  background-color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-style: solid;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-inside {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.input-label {
+  margin-bottom: 0px;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 16px;
+  color: #475569;
+}
+.username-input-filed {
+  font-size: 14px;
+  height: 40px;
+  border: 1px solid #d7dfe9;
+  background-color: #e2e8f0;
+  color: #64748b;
+  border-radius: 2px;
+  margin-top: 5px;
+  padding: 8px 16px 8px 16px;
+}
+.login-button {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  height: 40px;
+  width: 30%;
+  margin-top: 8px;
+  background-color: #2eba7c;
+  border-radius: 8px;
+  border: none;
+}
+.info-card {
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: black;
+  background-color: white;
+  padding: 25px;
+  border-style: solid;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.heading {
+  font-size: 20px;
+  font-weight: 600;
+}
+.each-group {
+  border-color: black;
+  border-width: 2px;
+  border-bottom-style: solid;
+}
+.name {
+  font-size: 16px;
+  font-weight: 500;
+}
+.desc {
+  font-size: 14px;
+  font-weight: 300;
+}
+.group-create {
+  margin-left: 40px;
+  margin-bottom: 15px;
+}
+.groups-info {
+  margin-left: 40px;
+}
