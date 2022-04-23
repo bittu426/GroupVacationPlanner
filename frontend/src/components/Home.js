@@ -15,7 +15,10 @@ import "../styles/Home.css";
 export class Home extends Component {
   static displayName = Home.name;
 
+  
+
   render() {
+    console.log(this.props)
     return (
       <div>
         <Header />
@@ -26,7 +29,7 @@ export class Home extends Component {
             </h1>
           </div>
           <div className="calender">
-            <Calender />
+            <Calender {...this.props} />
           </div>
         </div>
       </div>
