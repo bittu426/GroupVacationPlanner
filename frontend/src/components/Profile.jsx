@@ -22,7 +22,7 @@ function Profile(props) {
     props.apiservice.update_user()(username, email, password,intro, mobile,firstname,lastname)
   }
   useEffect(() => {
-    props.apiservice.get_user().then((result) => {
+    props.apiservice.get_user(props.username).then((result) => {
       console.log(result.data);
       setusername(result['data']['username']);
       setemail(result['data']['email']);
@@ -59,29 +59,24 @@ function Profile(props) {
 
           <form>
           <label>Username: </label>
-            <br/>
             <input onChange={(e)=>setusername(e.target.value)}></input>
-            <br/>
           <label>Password: </label>
-            <br/>
             <input onChange={(e)=>setpassword(e.target.value)}></input>
-            <br/>
           <label>Email: </label>
-            <br/>
+
             <input  onChange={(e)=>setemail(e.target.value)}></input>
-            <br/>
+
             <label>mobile:  </label>
-            <br/>
+
             <input  onChange={(e)=>setmobile(e.target.value)}></input>
-            <br/>
+
             <label>Bio: </label>
-            <br/>
+
             <input  onChange={(e)=>setintro(e.target.value)}></input>
-            <br/>
+
           <button onClick={handleSubmit}>Submit</button>
-          <br/>
-          <br/>
-        </form>
+
+          </form>
           </div>
         </div>
       </div>

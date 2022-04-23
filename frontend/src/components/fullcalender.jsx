@@ -12,8 +12,8 @@ export default function Calender(props) {
 
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
-      console.log(result.data['content']);
-      console.log(result.data[0]['content']);
+      console.log(result.data);
+      console.log(result.data[0]['content'])
     //  setEvents(result.data);
 
     });
