@@ -97,21 +97,18 @@ class User(Base):
         self.lastname = lastname
         self.intro = intro
         self.profile = profile
+
+class UserSchema(Schema):
+    id = fields.Number()
+    username = fields.Str()
+    password = fields.Str()
+    email = fields.Str()
+    mobile = fields.Str()
+    firstname = fields.Str()
+    lastname = fields.Str()
+    intro = fields.Str()
+    profile = fields.Str()
     
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return self.id
-
-    def __repr__(self):
-        return '<User {0}>'.format(self.email)
 
 class Group(Base):
     """Group table."""
@@ -119,7 +116,7 @@ class Group(Base):
     __tablename__ = "group"
 
     id = Column(Integer, primary_key=True, autoincrement="auto")
-    created_by = Column(Integer)
+    created_by = Column(String(255))
     title = Column(String(255))
     
     profile = Column(Text)
@@ -133,6 +130,8 @@ class Group(Base):
      
         self.profile = profile
 
+    
+
 
 class Group_Member(Base):
     """Group member table."""
@@ -143,15 +142,14 @@ class Group_Member(Base):
     group_id = Column(Integer)
     user_id = Column(Integer)
     
-    status = Column(Integer)
+   
     
 
-    def __init__(self,  group_id , user_id ,status):
+    def __init__(self,  group_id , user_id ):
         
         self.group_id = group_id
         self.user_id = user_id
-        
-        self.status = status
+    
 
 class Group_Message(Base):
     """Message acount for group"""

@@ -9,9 +9,20 @@ export default class APIService{
         ,mobile: mobile, intro: intro, profile: profile})
     }
 
+    get_user(username){
+      return axios.get(`/api/user`, {username: username} )
+
+    }
+
+    update_user(username, email, password,intro, mobile,firstname,lastname) {
+      return axios.post(`/api/update`, {username: username, email: email, password: password, intro: intro, mobile: mobile, firstname: firstname, lastname: lastname})
+
+    }
+
     login(user, password){
         return axios.post(`/api/token`, {username: user, password: password})
     }
+
 
 
 
@@ -19,12 +30,12 @@ export default class APIService{
       axios.get(`/api/chatscreen`, {username: user, password: password})
     }
 
-    joingroup(user, group, status){
-      return axios.post(`/api/get-started`, {user: user, group: group , status: status})
+    joingroup(username, group){
+      return axios.post(`/api/get-started`, {username: username, group: group })
     }
 
-    creategroup(user , title, status, profile){
-      return axios.post(`/api/get-started`, {created_by: user, title: title , status: status, profile: profile})
+    creategroup(username , title,  profile){
+      return axios.post(`/api/get-started`, {username: username, title: title , profile: profile})
     }
     
     save_event(user , title, date, content, group_id){

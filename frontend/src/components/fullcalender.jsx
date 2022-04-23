@@ -7,15 +7,23 @@ import CalenderModal from "./CalenderModal";
 
 export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [events, setEvents] = useState([]);
-  
+  const [title, settitle] = useState([]);
+  const event = [];
+
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
-      console.log(result.data);
-      setEvents(result.data)
+      console.log(result.data.content);
+    //  setEvents(result.data);
 
-  })
-}); 
+    });
+ 
+  }, []);
+  
+  function UpdateCalender(){
+    return 1;
+  }
+
+
 
   function renderEventContent(eventInfo) {
     return (
@@ -34,7 +42,7 @@ export default function Calender(props) {
   };
 */
   const onEventAdded = (event) => {
-    setEvents([...events]);
+  //  setEvents([...events]);
   };
 
       

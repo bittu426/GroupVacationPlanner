@@ -1,4 +1,7 @@
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
+
 import {
   Form,
   Button,
@@ -9,7 +12,25 @@ import {
 
 import "../styles/Groups.css";
 
-function Groups() {
+
+function Groups(props) {
+
+  const [name, setName] = useState("");
+  const [profile, setProfile] = useState("");
+  const navigate = useNavigate();
+  
+  const handleSubmit = (event) => {
+
+    
+    props.apiservice.creategroup(props.username, name, profile).then(() => {
+      navigate({
+        pathname: "/home",
+      });
+    });
+    // Prevent page reload
+    event.preventDefault();
+  };
+
   return (
     <div>
       <Header />
@@ -30,9 +51,9 @@ function Groups() {
                   type="text"
                   className="username-input-filed"
                   name="groupname"
-                  // value=
+                   value= {name}
                   placeholder="Group Name"
-                  // onChange={(e) => setUserName(e.target.value)}
+                   onChange={(e) => setName(e.target.value)}
                 />
               </FormGroup>
               <Form.Group
@@ -44,14 +65,14 @@ function Groups() {
                 <Form.Control
                   type="text"
                   className="username-input-filed"
-                  // value=
+                  value= {profile}
                   placeholder="Description"
-                  // onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setProfile(e.target.value)}
                 />
               </Form.Group>
               <Button
                 className="login-button"
-                //  onClick={handleSubmit}
+                  onClick={handleSubmit}
                 variant="primary"
                 block
                 size="lg"

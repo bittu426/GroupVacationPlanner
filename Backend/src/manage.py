@@ -60,45 +60,45 @@ def seed_db():
         profile="Hard working plant manager ",
     ))
     #Groups
-    session.add(models.Group(created_by=1,
+    session.add(models.Group(created_by="asearle",
         title="Japan Getaway",
        
         profile="Track team vacation ",
     ))
-    session.add(models.Group(created_by=3,
+    session.add(models.Group(created_by="shinebright",
         title="Anash Bash",
         
         profile="Bachelorette party ",
     ))
     session.add(models.Group_Member(
         group_id=2,
-        user_id=3,
-        status=1
+        user_id=3
+        
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=4,
-        status=2
+        user_id=4
+        
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=3,
-        status=2
+        user_id=3
+       
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=2,
-        status=2
+        user_id=2
+      
     ))
     session.add(models.Group_Member(
         group_id=1,
-        user_id=1,
-        status=1
+        user_id=1
+       
     ))
     session.add(models.Group_Member(
         group_id=2,
-        user_id=4,
-        status=2
+        user_id=4
+        
     ))
     session.add(models.Event(
         user_id=3,

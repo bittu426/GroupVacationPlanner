@@ -20,6 +20,7 @@ const apiservice = new APIService();
 function App() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
   const { token, removeToken, setToken } = useToken();
   return (
     <div id="App">
@@ -40,8 +41,9 @@ function App() {
         />
         <Route path="/home" element={<Home apiservice={apiservice}/>} />
         <Route path="/plan" element={<Plan />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/groups" element={<Groups />} />
+        <Route path="/profile" element={<Profile username={username}
+              password={password}/>} />
+        <Route path="/groups" element={<Groups apiservice={apiservice}/>} />
         <Route
           path="/messages"
           element={

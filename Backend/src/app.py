@@ -1,4 +1,5 @@
 # coding=utf-8
+from curses.ascii import US
 from datetime import timedelta, datetime, timezone
 from flask.cli import FlaskGroup
 from flask_cors import CORS, cross_origin
@@ -6,7 +7,7 @@ from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from models import Session, engine, Base
-from models import User, Group, Group_Member, Event, EventSchema
+from models import User, Group, Group_Member, Event, EventSchema, UserSchema
 from urllib.request import  urlopen
 import json
 import requests
@@ -105,8 +106,40 @@ def get_events():
 
     # serializing as JSON
     sessiondb.close()
-    return jsonify(events.data)
+    return jsonify(events)
 
+@server.route('/api/user', methods=['GET'])
+def get_users():
+
+    Username = request.json.get("username", None)
+    user_obj = sessiondb.query(User).filter_by(username= Username )
+
+    schema = UserSchema(many=true)
+    user = schema.dump(user_obj)
+
+    sessiondb.close()
+    return jsonify(user)
+
+
+@server.route('/api/update', methods=['POST'])
+def update_user():
+    json_data = request.json
+    Username = request.json.get("username", None)
+    user_obj = sessiondb.query(User).filter_by(username= Username )\
+    .update({"username": json_data["username"],
+    "firstname": json_data["firstname"],
+    "lastname": json_data["lastname"],
+    "mobile": json_data["mobile"],
+    "intro": json_data["intro"],
+    "email": json_data["email"],
+    "password": json_data["password"]
+    })
+
+    schema = UserSchema(many=true)
+    user = schema.dump(user_obj)
+
+    sessiondb.close()
+    return jsonify(user)
 
 #API
 @server.after_request
@@ -163,6 +196,7 @@ def get_started():
     json_data = request.json
     #mount group object
 
+    user = sessiondb.query(User).filter_by(username= json_data['Username'] )
     NewChat = [
         {'title': json_data['title']},
         {'is_direct_chat': False},
@@ -178,7 +212,7 @@ def get_started():
 
 
     group = Group(
-        created_by = json_data['created_by'],
+        created_by = json_data['username'],
         title = json_data['title'],
         profile = json_data['profile']
     )
@@ -204,8 +238,8 @@ def joinGroup():
     # receives data from frontend. parses data into columns to be inputted
     member = Group_Member(
         group_id = json_data['access_key'],
-        user_id = json_data['user_id'],
-        status = json_data['status']
+        user_id = json_data['user_id']
+       
     )
 
     NewChat = [
