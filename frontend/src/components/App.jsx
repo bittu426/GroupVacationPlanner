@@ -25,19 +25,9 @@ function App() {
     <div id="App">
       <Routes>
         <Route
-          path="/login"
-          element={
-            <Login
-              apiservice={apiservice}
-              setUserName={setUserName}
-              setPassword={setPassword}
-            />
-          }
-        />
-        <Route
           path="/"
           element={
-            <Header
+            <Login
               apiservice={apiservice}
               setUserName={setUserName}
               setPassword={setPassword}
@@ -50,13 +40,6 @@ function App() {
         />
         <Route path="/home" element={<Home />} />
         <Route path="/plan" element={<Plan />} />
-        <Route
-          path="/plan"
-          render={() => {
-            window.location.href =
-              "/Users/asearles/Documents/Github/GroupVacationPlanner/frontend/src/Ka.html";
-          }}
-        />
         <Route path="/profile" element={<Profile />} />
         <Route path="/groups" element={<Groups />} />
         <Route

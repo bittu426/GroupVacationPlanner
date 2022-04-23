@@ -4,7 +4,7 @@ import { Component } from "react";
 
 
 class Kayak extends Component {
-   /* componentDidMount() {
+    componentDidMount() {
       const script = document.createElement("script");
       script.setAttribute("src", "https://www.kayak.com/affiliate/widget-v2.js");
   
@@ -29,7 +29,7 @@ class Kayak extends Component {
       });
       document.body.appendChild(script);
     }
-    */
+    
     render() {
       return (
         <div className="kayak">
