@@ -11,7 +11,9 @@ export default function Calender(props) {
   
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
-      console.log(result);
+      console.log(result.data);
+      setEvents(result.data)
+
   })
 }); 
 
@@ -32,7 +34,7 @@ export default function Calender(props) {
   };
 */
   const onEventAdded = (event) => {
-    setEvents([...events, event]);
+    setEvents([...events]);
   };
 
       
@@ -43,17 +45,17 @@ export default function Calender(props) {
           plugins={[ dayGridPlugin, interactionPlugin  ]}
           initialView="dayGridMonth"
           weekends={true}
-        //  events={[
-          //  { title: 'event 1', date: '2022-04-10' },
-           // { title: 'event 2', date: '2022-04-12' }
-         // ]}
+          events={[
+            { title: 'event 1', date: '2022-04-10' },
+            { title: 'event 2', date: '2022-04-12' }
+          ]}
           eventContent={renderEventContent}
           selectable={true}
           headerToolbar= {
             
             {
               left: 'prev,next today', 
-              center: 'title', 
+              center: 'addEventButton', 
               right: 'dayGridMonth'
             }
           }
