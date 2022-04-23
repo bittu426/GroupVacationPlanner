@@ -82,8 +82,10 @@ To get a local copy up and running follow these simple example steps.
 <b>How to run a project from GitHub locally</b> 
 
 In order to properly run and test the code, you'll need to move the files in the repository to your local machine. You can do this by cloning the repository. First go ahead and fork the repository. This will be your own project. You should find the fork command in the top right of your screen.  Go ahead and click the code button to clone the repo. If you have Github Desktop installed, you can click Open with Github Desktop. This allows you to clone repos to your local machine with minimal hassle. If you do not have Github desktop head to a terminal and issue the command: 
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/GITCOMMAND.jpg)
+<br />
 
-GITCLONECOMMAND
 
 with the copied HTTPS URL after git clone. You have now cloned the repo to your local Machine 
 
@@ -96,9 +98,11 @@ with the copied HTTPS URL after git clone. You have now cloned the repo to your 
 <b>Install Dependencies</b> 
 
 In order to run your project, you need to install the dependencies located in the package.json folder. Navigate to the frontend folder in the project and run the command: 
+<br />
+![alt text](https://github.com/PlusUltra404/GroupVacationPlanner/blob/main/Wireframes/NPMINSTALL.jpg)
+<br />
 
 
-NPMINSTALL
 This will install all necessary dependencies. If an error occurs use the command "npm install --legacy-peer-deps" instead.  
 
 <b>Update configurations (optional)</b> 
