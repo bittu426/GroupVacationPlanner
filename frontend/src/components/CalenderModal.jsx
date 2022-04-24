@@ -11,11 +11,10 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 const CalenderModal = (props) => {
     const [title, setTitle] = useState("");
-    const [date, setDate] = useState("");
     const [content, setContent] = useState("  ");
     
  const handleSubmit = (event) => {
-    props.apiservice.save_event(props.username, title, date,content, 1,1);
+    props.apiservice.save_event(props.username, title, props.date,content, 1,1);
     // Prevent page reload
     
   };
@@ -46,6 +45,18 @@ const CalenderModal = (props) => {
                         placeholder=" "
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                    />
+                    </FormGroup>
+                    <FormGroup className="card-inside" controlId="content">
+                    <FormLabel className="input-label">Content</FormLabel>
+                    <FormControl
+                        autoFocus
+                        type="text"
+                        
+                        name="content"
+                        placeholder=" "
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
                     />
                     </FormGroup>
                 </Form>

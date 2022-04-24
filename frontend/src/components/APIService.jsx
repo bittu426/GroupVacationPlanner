@@ -44,7 +44,13 @@ export default class APIService{
 
     get_event(){
       return axios.get(`/api/events`)
-  }
+    }
+
+    get_groups(){
+      return axios.get(`/api/groups`)
+    }
+
+
 
    /* logout() {
         this.user_token = 0;

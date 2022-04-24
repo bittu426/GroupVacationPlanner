@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
+
 const Header = (props) => (
+
+  
   <nav className="nav-header">
     <div className="nav-content">
       <ul className="nav-menu">
@@ -31,9 +34,9 @@ const Header = (props) => (
           </Link>
         </li>
       </ul>
-      <button type="button" className="logout-desktop-btn">
-        Logout
-      </button>
+      <Link to="/" className="logout-desktop-btn">
+            Logout
+        </Link>
     </div>
   </nav>
 );

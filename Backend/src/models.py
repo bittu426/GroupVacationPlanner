@@ -131,6 +131,13 @@ class Group(Base):
         self.profile = profile
 
     
+class GroupSchema(Schema):
+    id = fields.Number()
+    created_by = fields.Str()
+    title = fields.Str()
+    profile = fields.Str()
+    membercount = fields.Number()
+ 
 
 
 class Group_Member(Base):

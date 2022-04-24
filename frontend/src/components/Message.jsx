@@ -2,6 +2,7 @@ import {ChatEngine } from 'react-chat-engine';
 import ChatFeed from './ChatFeed'
 import { useNavigate } from "react-router-dom";
 import Header from './Header';
+import "../styles/Message.css";
 
 export const MessageApp = (props) => {
     console.log(props);

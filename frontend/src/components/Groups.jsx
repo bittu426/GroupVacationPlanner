@@ -11,27 +11,78 @@ import {
 } from "react-bootstrap";
 
 import "../styles/Groups.css";
+import { listenBySelector } from "@fullcalendar/react";
 
-function Groups(props) {
+export const GroupEntry = (props) => {
+  
+  return (
+      <div className="GroupEntry">
+          
+          <p>
+              {"Name: " + props.title + " | " +
+              "profile: " + props.profile + " | " +
+              "count: " + props.count}
+          </p>
+      </div>
+  )
+}
+
+export const Groups = (props) => {
   const [name, setName] = useState("");
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
+  const [bool, setbool] = useState(false);
+    
+  var list= [];
+  if (bool ==false){
+      setbool(true);
+      props.apiservice.get_groups().then((result) => {
+        console.log(result.data);
+        for(let i=0; i <result.data.length; i++){
+          const title = result['data'][0]['title'];
+          const profile = result['data'][0]['profile'];
+          const count = result['data'][0]['membercount']
+        //  list.push({title,profile,count});
+          list.push(
+            <GroupEntry
+            title = {result['data'][0]['title']} 
+            profile = {result['data'][0]['profile']}
+            count = {result['data'][0]['membercount']} />
+  
+          );
+          console.log(list);
+        }
+  
+      });
+    }
+  
 
-  const [title, setTitle] = useState("");
-
-  const [count, setCount] = useState("");
 
 
-
-  useEffect(() => {
+  
+  /*useEffect(() => {
     props.apiservice.get_groups().then((result) => {
       console.log(result.data);
-      setTitle(result['data'][0]['title']);
-      setProfile(result['data'][0]['profile']);
-      setCount(result['data'][0]['membercount']);
+      for(let i=0; i <result.data.length; i++){
+        const title = result['data'][0]['title'];
+        const profile = result['data'][0]['profile'];
+        const count = result['data'][0]['membercount']
+      //  list.push({title,profile,count});
+        list.push(
+          <GroupEntry
+          title = {result['data'][0]['title']} 
+          profile = {result['data'][0]['profile']}
+          count = {result['data'][0]['membercount']} />
+
+        );
+        console.log(list);
+      }
+
     });
  
-  }, []);
+  }, []); */
+
+
 
 
   const handleSubmit = (event) => {
@@ -102,7 +153,8 @@ function Groups(props) {
           <div className="info-card">
             <div>
               <div className="each-group">
-                <h1 className="name">Group Name 1</h1>
+                <div>{list}</div>
+                { /* <h1 className="name">Group Name 1</h1>
                 <p className="desc">
                   Group Description 1 (Trip to New York).....
                 </p>
@@ -123,12 +175,15 @@ function Groups(props) {
                 <p className="desc">Group Description 2 ......</p>
                 <button className="button">Join Group</button>
               </div>
+              
+            </div>
+            */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+  </div>
   );
 }
-
 export default Groups;

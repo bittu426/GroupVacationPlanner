@@ -9,9 +9,9 @@ export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, settitle] = useState("");
   const [date, setdate] = useState("");
-  const [event, setEvent] = useState({title: ' ' , date: ' ' });
-  const [Lastname, setLast] = useState("");
+  const [event, setEvent] = useState([{title: ' ' , date: ' ' }]);
 
+  var list= [] ;
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
       console.log(result.data);
@@ -19,15 +19,17 @@ export default function Calender(props) {
       console.log(result.data[0]['date'])
       for(let i=0; i <result.data.length; i++){
         console.log(i)
-        const titleT = JSON.stringify(result['data'][i]['title']);
-        const dateT = JSON.stringify(result.data[i]['date']);
+        const titleT = result['data'][i]['title'];
+        const dateT = result['data'][i]['date'];
+        list.push({titleT,dateT});
         console.log(titleT);
-        settitle(titleT);
-        setdate(dateT);
-        console.log(title);
-        console.log(date);
-        console.log(event);
-        setEvent(event => [...event, {title,date}]);
+        console.log(dateT);
+        console.log(list);
+       
+        
+       // settitle(titleT);
+       // setdate(dateT);
+      //  setEvent(event => [...event, {title,date}]);
         
       }
       console.log(event);
@@ -44,7 +46,9 @@ export default function Calender(props) {
 
 
   function renderEventContent(eventInfo) {
+
     return (
+
       <>
         <b>{eventInfo.timeText}</b>
         <i>{eventInfo.event.title}</i>
@@ -72,7 +76,7 @@ export default function Calender(props) {
           plugins={[ dayGridPlugin, interactionPlugin  ]}
           initialView="dayGridMonth"
           weekends={true}
-          events= {event}
+          events= {list}
           eventContent={renderEventContent}
           selectable={true}
           headerToolbar= {
@@ -83,10 +87,15 @@ export default function Calender(props) {
               right: 'dayGridMonth'
             }
           }
-           
+          dateClick={ function(info) {
+            alert('Clicked on: ' + info.dateStr);
+            setdate(info.dateStr);
+          }
+        }
           select= { 
             
            function(info) {
+             
             setModalVisible(true)
             //alert('selected ' + info.startStr + ' to ' + info.endStr);
             }
@@ -94,7 +103,7 @@ export default function Calender(props) {
 
         />
         
-        {modalVisible && <CalenderModal setModalVisible={setModalVisible} modalVisible={modalVisible} apiservice={props.apiservice} />}
+        {modalVisible && <CalenderModal setModalVisible={setModalVisible} modalVisible={modalVisible} apiservice={props.apiservice} date={date} username={props.username}/>}
         </div>
         )
     }
