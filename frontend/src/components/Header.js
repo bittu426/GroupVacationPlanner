@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
+
+const navigate = useNavigate();
 const Header = (props) => (
+
+  
   <nav className="nav-header">
     <div className="nav-content">
       <ul className="nav-menu">
@@ -31,7 +35,10 @@ const Header = (props) => (
           </Link>
         </li>
       </ul>
-      <button type="button" className="logout-desktop-btn">
+      <Link to="/" className="logout-desktop-btn">
+            Logout
+        </Link>
+      <button type="button" className="logout-desktop-btn" onClick={handleSubmit}>
         Logout
       </button>
     </div>

@@ -109,7 +109,7 @@ def get_events():
     return jsonify(events)
 
 @server.route('/api/groups',methods=['GET'])
-def get_events():
+def get_groups():
      # fetching from the database
 
     group_objects = sessiondb.query(Event).all()
