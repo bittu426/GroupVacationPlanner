@@ -11,27 +11,34 @@ import {
 } from "react-bootstrap";
 
 import "../styles/Groups.css";
+import { listenBySelector } from "@fullcalendar/react";
 
 function Groups(props) {
   const [name, setName] = useState("");
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
-
   const [title, setTitle] = useState("");
-
   const [count, setCount] = useState("");
 
 
 
+  var list= [];
   useEffect(() => {
     props.apiservice.get_groups().then((result) => {
       console.log(result.data);
-      setTitle(result['data'][0]['title']);
-      setProfile(result['data'][0]['profile']);
-      setCount(result['data'][0]['membercount']);
+      for(let i=0; i <result.data.length; i++){
+        const title = result['data'][0]['title'];
+        const profile = result['data'][0]['profile'];
+        const count = result['data'][0]['membercount']
+        list.push({title,profile,count});
+        console.log(list);
+      }
+
     });
  
   }, []);
+
+
 
 
   const handleSubmit = (event) => {

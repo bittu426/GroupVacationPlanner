@@ -11,6 +11,7 @@ export default function Calender(props) {
   const [date, setdate] = useState("");
   const [event, setEvent] = useState([{title: ' ' , date: ' ' }]);
 
+  var list= [] ;
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
       console.log(result.data);
@@ -19,12 +20,13 @@ export default function Calender(props) {
       for(let i=0; i <result.data.length; i++){
         console.log(i)
         const titleT = result['data'][i]['title'];
-        const dateT = result.data[i]['date'];
-        console.log(title);
-        console.log(date);
-        console.log(event);
-        console.log(result['data'][i]['title']);
-        console.log(result.data[i]['date']);
+        const dateT = result['data'][i]['date'];
+        list.push({titleT,dateT});
+        console.log(titleT);
+        console.log(dateT);
+        console.log(list);
+       
+        
        // settitle(titleT);
        // setdate(dateT);
       //  setEvent(event => [...event, {title,date}]);
@@ -83,10 +85,15 @@ export default function Calender(props) {
               right: 'dayGridMonth'
             }
           }
-           
+          dateClick={ function(info) {
+            alert('Clicked on: ' + info.dateStr);
+            setdate(info.dateStr);
+          }
+        }
           select= { 
             
            function(info) {
+             
             setModalVisible(true)
             //alert('selected ' + info.startStr + ' to ' + info.endStr);
             }
@@ -94,7 +101,7 @@ export default function Calender(props) {
 
         />
         
-        {modalVisible && <CalenderModal setModalVisible={setModalVisible} modalVisible={modalVisible} apiservice={props.apiservice} />}
+        {modalVisible && <CalenderModal setModalVisible={setModalVisible} modalVisible={modalVisible} apiservice={props.apiservice} date={date} username={props.username}/>}
         </div>
         )
     }

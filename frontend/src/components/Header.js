@@ -37,9 +37,6 @@ const Header = (props) => (
       <Link to="/" className="logout-desktop-btn">
             Logout
         </Link>
-      <button type="button" className="logout-desktop-btn" >
-        Logout
-      </button>
     </div>
   </nav>
 );
