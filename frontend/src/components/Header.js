@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
 
-const navigate = useNavigate();
 const Header = (props) => (
 
   
@@ -38,7 +37,7 @@ const Header = (props) => (
       <Link to="/" className="logout-desktop-btn">
             Logout
         </Link>
-      <button type="button" className="logout-desktop-btn" onClick={handleSubmit}>
+      <button type="button" className="logout-desktop-btn" >
         Logout
       </button>
     </div>
