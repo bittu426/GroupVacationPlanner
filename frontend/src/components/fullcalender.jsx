@@ -10,6 +10,7 @@ export default function Calender(props) {
   const [title, settitle] = useState("");
   const [date, setdate] = useState("");
   const [event, setEvent] = useState({title: ' ' , date: ' ' });
+  const [Lastname, setLast] = useState("");
 
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
@@ -18,8 +19,9 @@ export default function Calender(props) {
       console.log(result.data[0]['date'])
       for(let i=0; i <result.data.length; i++){
         console.log(i)
-        const titleT = result['data'][i]['title'];
-        const dateT = result.data[i]['date'];
+        const titleT = JSON.stringify(result['data'][i]['title']);
+        const dateT = JSON.stringify(result.data[i]['date']);
+        console.log(titleT);
         settitle(titleT);
         setdate(dateT);
         console.log(title);
