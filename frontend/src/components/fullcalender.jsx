@@ -17,6 +17,10 @@ export default function Calender(props) {
       console.log(result.data[0]['title'])
       console.log(result.data[0]['date'])
       for(let i=0; i <result.data.length; i++){
+        console.log(i)
+        console.log(title)
+        console.log(date)
+        console.log(event)
         settitle(result.data[i]['title'])
         setdate(result.data[i]['date'])
         setEvent(event => [...event, {title,date}])

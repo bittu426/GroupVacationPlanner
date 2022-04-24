@@ -32,13 +32,13 @@ function Profile(props) {
   useEffect(() => {
     props.apiservice.get_user(props.username).then((result) => {
       console.log(result.data);
-      setUsername(result['data']['username']);
-      setEmail(result['data']['email']);
-      setPassword(result['data']['password']);
-      setIntro(result['data']['bio']);
-      setMobile(result['data']['mobile']);
-      setFirst(result['data']['first']);
-      setLast(result['data']['last']);
+      setUsername(result['data'][0]['username']);
+      setEmail(result['data'][0]['email']);
+      setPassword(result['data'][0]['password']);
+      setIntro(result['data'][0]['intro']);
+      setMobile(result['data'][0]['mobile']);
+      setFirst(result['data'][0]['firstname']);
+      setLast(result['data'][0]['lastname']);
     });
  
   }, []);
