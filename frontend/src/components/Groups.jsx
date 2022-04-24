@@ -17,6 +17,23 @@ function Groups(props) {
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
 
+  const [title, setTitle] = useState("");
+
+  const [count, setCount] = useState("");
+
+
+
+  useEffect(() => {
+    props.apiservice.get_groups().then((result) => {
+      console.log(result.data);
+      setTitle(result['data'][0]['title']);
+      setProfile(result['data'][0]['profile']);
+      setCount(result['data'][0]['membercount']);
+    });
+ 
+  }, []);
+
+
   const handleSubmit = (event) => {
     props.apiservice.creategroup(props.username, name, profile).then(() => {
       navigate({
