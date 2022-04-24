@@ -12,16 +12,12 @@ import {
 
 import "../styles/Groups.css";
 
-
 function Groups(props) {
-
   const [name, setName] = useState("");
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
-  
-  const handleSubmit = (event) => {
 
-    
+  const handleSubmit = (event) => {
     props.apiservice.creategroup(props.username, name, profile).then(() => {
       navigate({
         pathname: "/home",
@@ -51,9 +47,9 @@ function Groups(props) {
                   type="text"
                   className="username-input-filed"
                   name="groupname"
-                   value= {name}
+                  // value=
                   placeholder="Group Name"
-                   onChange={(e) => setName(e.target.value)}
+                  // onChange={(e) => setUserName(e.target.value)}
                 />
               </FormGroup>
               <Form.Group
@@ -65,14 +61,14 @@ function Groups(props) {
                 <Form.Control
                   type="text"
                   className="username-input-filed"
-                  value= {profile}
+                  // value=
                   placeholder="Description"
-                  onChange={(e) => setProfile(e.target.value)}
+                  // onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
               <Button
                 className="login-button"
-                  onClick={handleSubmit}
+                //  onClick={handleSubmit}
                 variant="primary"
                 block
                 size="lg"
@@ -85,17 +81,31 @@ function Groups(props) {
           </div>
         </div>
         <div className="groups-info">
-          <h1 className="heading">Groups you were in</h1>
+          <h1 className="heading">Groups you want to join</h1>
           <div className="info-card">
-            <div className="each-group">
-              <h1 className="name">Group Name 1</h1>
-              <p className="desc">
-                Group Description 1 (Trip to New York).....
-              </p>
-            </div>
-            <div className="each-group">
-              <h1 className="name">Group Name 2</h1>
-              <p className="desc">Group Description 2 ......</p>
+            <div>
+              <div className="each-group">
+                <h1 className="name">Group Name 1</h1>
+                <p className="desc">
+                  Group Description 1 (Trip to New York).....
+                </p>
+                <button className="button">Join Group</button>
+              </div>
+              <div className="each-group">
+                <h1 className="name">Group Name 2</h1>
+                <p className="desc">Group Description 2 ......</p>
+                <button className="button">Join Group</button>
+              </div>
+              <div className="each-group">
+                <h1 className="name">Group Name 2</h1>
+                <p className="desc">Group Description 2 ......</p>
+                <button className="button">Join Group</button>
+              </div>
+              <div className="each-group">
+                <h1 className="name">Group Name 2</h1>
+                <p className="desc">Group Description 2 ......</p>
+                <button className="button">Join Group</button>
+              </div>
             </div>
           </div>
         </div>
