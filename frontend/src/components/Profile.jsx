@@ -27,6 +27,13 @@ function Profile(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if(username == "") {username = Username; }
+    if(email == "") {email = Email; }
+    if(password == "") {password = Password; }
+    if(intro == "") {intro = Intro; }
+    if(mobile == "") {mobile = Mobile; }
+    if(firstname == "") {firstname = Firstname; }
+    if(lastname == "") {lastname = Lastname; } 
     props.apiservice.update_user()(username, email, password,intro, mobile,firstname,lastname)
   }
   useEffect(() => {

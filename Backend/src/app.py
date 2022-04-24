@@ -193,10 +193,11 @@ def home():
 
 @server.route('/api/get-started', methods=['POST'])
 def get_started():
+    username = request.json.get("username", None)
     json_data = request.json
     #mount group object
 
-    user = sessiondb.query(User).filter_by(username= json_data['username'] )
+
     NewChat = [
         {'title': json_data['title']},
         {'is_direct_chat': False},
@@ -212,7 +213,7 @@ def get_started():
 
 
     group = Group(
-        created_by = json_data['username'],
+        created_by = username,
         title = json_data['title'],
         profile = json_data['profile']
     )
