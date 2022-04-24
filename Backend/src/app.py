@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from flask import Flask, jsonify, request,redirect,render_template, session, url_for
 from sqlalchemy import null, select
 from models import Session, engine, Base
-from models import User, Group, Group_Member, Event, EventSchema, UserSchema
+from models import User, Group, Group_Member, Event, EventSchema,GroupSchema, UserSchema
 from urllib.request import  urlopen
 import json
 import requests
@@ -107,6 +107,21 @@ def get_events():
     # serializing as JSON
     sessiondb.close()
     return jsonify(events)
+
+@server.route('/api/groups',methods=['GET'])
+def get_events():
+     # fetching from the database
+
+    group_objects = sessiondb.query(Event).all()
+    
+    # transforming into JSON-serializable objects
+    schema = GroupSchema(many=True)
+    groups = schema.dump(group_objects)
+
+
+    # serializing as JSON
+    sessiondb.close()
+    return jsonify(groups)
 
 @server.route('/api/user', methods=['POST'])
 def get_users():
