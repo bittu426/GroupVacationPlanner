@@ -1,9 +1,10 @@
 .groups-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   background: linear-gradient(120deg, #2eba7c, #2ebab7);
   height: 90vh;
+  background-size: auto;
 }
 .card {
   border-radius: 12px;
@@ -14,11 +15,10 @@
   padding-bottom: 25px;
   border-style: solid;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .card-inside {
@@ -26,15 +26,14 @@
   flex-direction: column;
   margin-bottom: 8px;
   border-radius: 8px;
-  width: 100%;
-  max-width: 350px;
+  width: 470px;
 }
 
 .input-label {
   margin-bottom: 0px;
   font-family: "Roboto";
   font-weight: bold;
-  font-size: 13px;
+  font-size: 17px;
   line-height: 16px;
   color: #475569;
 }
@@ -47,6 +46,7 @@
   border-radius: 2px;
   margin-top: 5px;
   padding: 8px 16px 8px 16px;
+  width: 100%;
 }
 .login-button {
   font-family: "Roboto";
@@ -67,8 +67,7 @@
   background-color: white;
   padding: 25px;
   border-style: solid;
-  width: 100%;
-  max-width: 600px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,6 +80,7 @@
   border-color: black;
   border-width: 2px;
   border-bottom-style: solid;
+  padding-bottom: 10px;
 }
 .name {
   font-size: 16px;
@@ -91,9 +91,25 @@
   font-weight: 300;
 }
 .group-create {
-  margin-left: 40px;
+  margin-left: 50px;
   margin-bottom: 15px;
 }
 .groups-info {
-  margin-left: 40px;
+  margin-right: 50px;
+}
+.button {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  height: 40px;
+  width: 100px;
+  background-color: #2eba7c;
+  border-radius: 8px;
+  border: none;
+}
+.image {
+  height: 500px;
+  width: 500px;
+  border-radius: 12px;
 }

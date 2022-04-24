@@ -2,7 +2,7 @@
   background-color: white;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   background: linear-gradient(120deg, #2eba7c, #2ebab7);
   height: 90vh;
 }
@@ -11,11 +11,109 @@
   font-weight: 600;
 }
 .greeting {
-  margin-left: 30px;
+  margin-left: 50px;
   width: 40%;
+  display: flex;
+  flex-direction: column;
 }
 .calender {
   width: 500px;
   height: 500px;
   margin-top: 20px;
+  margin-right: 70px;
+}
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  margin-top: 20px;
+}
+.todo-user-input {
+  background-color: white;
+  width: 300px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e4e7eb;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 15px;
+}
+.button {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  height: 40px;
+  width: 60px;
+  margin-top: 8px;
+  background-color: #2eba7c;
+  border-radius: 8px;
+  border: none;
+}
+.todo-items-container {
+  margin: 2px;
+  padding: 2px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.todo-item-container {
+  margin-top: 1px;
+}
+.label-container {
+  background-color: white;
+  width: 300px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #2eba7c;
+  border-bottom: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 4px;
+}
+
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.checkbox-label {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  width: 82%;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+}
+
+.delete-icon-container {
+  text-align: right;
+  width: 18%;
+}
+
+.delete-icon {
+  padding: 15px;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+.flexy {
+  display: flex;
+  flex-direction: row;
+}
+.sub-headings {
+  font-size: 23px;
+  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
