@@ -198,10 +198,11 @@ def get_started():
     #mount group object
 
 
-    NewChat = [
-        {'title': json_data['title']},
-        {'is_direct_chat': False},
-    ]
+    NewChat = {
+        'title': json_data['title'],
+        'is_direct_chat': False
+        }
+    
 
     r = requests.post('https://api.chatengine.io/chats/',
             data=NewChat,

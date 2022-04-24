@@ -7,8 +7,8 @@ import CalenderModal from "./CalenderModal";
 
 export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [title, settitle] = useState([]);
-  const [date, setdate] = useState([]);
+  const [title, settitle] = useState([""]);
+  const [date, setdate] = useState([""]);
   const [event, setEvent] = useState([{title: ' ' , date: ' ' }]);
 
   useEffect(() => {
@@ -18,14 +18,16 @@ export default function Calender(props) {
       console.log(result.data[0]['date'])
       for(let i=0; i <result.data.length; i++){
         console.log(i)
-        console.log(title)
-        console.log(date)
-        console.log(event)
-        console.log(result.data[i]['title'])
-        console.log(result.data[i]['date'])
-        settitle(result.data[i]['title'])
-        setdate(result.data[i]['date'])
-        setEvent(event => [...event, {title,date}])
+        const titleT = result['data'][i]['title'];
+        const dateT = result.data[i]['date'];
+        console.log(title);
+        console.log(date);
+        console.log(event);
+        console.log(result['data'][i]['title']);
+        console.log(result.data[i]['date']);
+        settitle(titleT);
+        setdate(dateT);
+        setEvent(event => [...event, {title,date}]);
         
       }
       console.log(event);
