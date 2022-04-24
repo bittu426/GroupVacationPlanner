@@ -108,7 +108,7 @@ def get_events():
     sessiondb.close()
     return jsonify(events)
 
-@server.route('/api/user', methods=['GET'])
+@server.route('/api/user', methods=['POST'])
 def get_users():
 
     Username = request.json.get("username", None)

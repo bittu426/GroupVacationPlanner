@@ -8,13 +8,21 @@ import CalenderModal from "./CalenderModal";
 export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, settitle] = useState([]);
-  const event = [];
+  const [date, setdate] = useState([]);
+  const [event, setEvent] = useState([{title: ' ' , date: ' ' }]);
 
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
       console.log(result.data);
-      console.log(result.data[0]['content'])
-    //  setEvents(result.data);
+      console.log(result.data[0]['title'])
+      console.log(result.data[0]['date'])
+      for(let i=0; i <result.data.length; i++){
+        settitle(result.data[i]['title'])
+        setdate(result.data[i]['date'])
+        setEvent(event => [...event, {title,date}])
+        
+      }
+    //  setEvents(result.data)
 
     });
  
@@ -42,6 +50,7 @@ export default function Calender(props) {
     
   };
 */
+  
   const onEventAdded = (event) => {
   //  setEvents([...events]);
   };
@@ -54,17 +63,14 @@ export default function Calender(props) {
           plugins={[ dayGridPlugin, interactionPlugin  ]}
           initialView="dayGridMonth"
           weekends={true}
-          events={[
-            { title: 'event 1', date: '2022-04-10' },
-            { title: 'event 2', date: '2022-04-12' }
-          ]}
+          events= {event}
           eventContent={renderEventContent}
           selectable={true}
           headerToolbar= {
             
             {
               left: 'prev,next today', 
-              center: 'addEventButton', 
+              center: 'title', 
               right: 'dayGridMonth'
             }
           }
