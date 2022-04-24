@@ -184,7 +184,7 @@ export class Home extends Component {
             </div>
           </div>
           <div className="calender">
-            <Calender />
+            <Calender {...this.props}/>
           </div>
         </div>
       </div>
