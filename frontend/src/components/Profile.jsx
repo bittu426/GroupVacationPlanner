@@ -7,7 +7,7 @@ import zxcvbn from "zxcvbn";
 import "../styles/Profile.css";
 
 function Profile(props) {
-  const [profileData, setProfileData] = useState(null);
+ 
   
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
@@ -17,6 +17,14 @@ function Profile(props) {
   const [firstname, setfirst] = useState("");
   const [lastname, setlast] = useState("");
 
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Intro, setIntro] = useState("");
+  const [Mobile, setMobile] = useState("");
+  const [Firstname, setFirst] = useState("");
+  const [Lastname, setLast] = useState("");
+
   function handleSubmit(event) {
     event.preventDefault();
     props.apiservice.update_user()(username, email, password,intro, mobile,firstname,lastname)
@@ -24,13 +32,13 @@ function Profile(props) {
   useEffect(() => {
     props.apiservice.get_user(props.username).then((result) => {
       console.log(result.data);
-      setusername(result['data']['username']);
-      setemail(result['data']['email']);
-      setpassword(result['data']['password']);
-      setintro(result['data']['bio']);
-      setmobile(result['data']['mobile']);
-      setfirst(result['data']['first']);
-      setlast(result['data']['last']);
+      setUsername(result['data']['username']);
+      setEmail(result['data']['email']);
+      setPassword(result['data']['password']);
+      setIntro(result['data']['bio']);
+      setMobile(result['data']['mobile']);
+      setFirst(result['data']['first']);
+      setLast(result['data']['last']);
     });
  
   }, []);
@@ -47,15 +55,15 @@ function Profile(props) {
                 src="https://www.w3schools.com/w3images/avatar2.png"
               />
             </div>
-            <h1 className="pic-text">{username}</h1>
+            <h1 className="pic-text">{Username}</h1>
           </div>
           <div className="right">
-            <p className="info">First name:   {firstname}</p>
-            <p className="info">Last name:   {lastname}</p>
-            <p className="info">Username:  {username}</p>
-            <p className="info">Email:  {email}</p>
-            <p className="info">Phone Number:   {mobile}</p>
-            <p className="info">Bio:   {intro}</p>
+            <p className="info">First name:   {Firstname}</p>
+            <p className="info">Last name:   {Lastname}</p>
+            <p className="info">Username:  {Username}</p>
+            <p className="info">Email:  {Email}</p>
+            <p className="info">Phone Number:   {Mobile}</p>
+            <p className="info">Bio:   {Intro}</p>
 
           <form>
           <label>Username: </label>

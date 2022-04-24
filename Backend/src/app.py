@@ -196,7 +196,7 @@ def get_started():
     json_data = request.json
     #mount group object
 
-    user = sessiondb.query(User).filter_by(username= json_data['Username'] )
+    user = sessiondb.query(User).filter_by(username= json_data['username'] )
     NewChat = [
         {'title': json_data['title']},
         {'is_direct_chat': False},

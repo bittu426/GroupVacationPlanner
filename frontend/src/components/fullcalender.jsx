@@ -22,6 +22,7 @@ export default function Calender(props) {
         setEvent(event => [...event, {title,date}])
         
       }
+      console.log(event);
     //  setEvents(result.data)
 
     });

@@ -22,7 +22,7 @@ const Header = (props) => (
         </li>
         <li>
           <Link to="/messages" className="nav-link">
-            messages
+            Messages
           </Link>
         </li>
         <li>
