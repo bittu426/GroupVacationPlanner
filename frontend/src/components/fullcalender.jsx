@@ -46,7 +46,9 @@ export default function Calender(props) {
 
 
   function renderEventContent(eventInfo) {
+
     return (
+
       <>
         <b>{eventInfo.timeText}</b>
         <i>{eventInfo.event.title}</i>
@@ -74,7 +76,7 @@ export default function Calender(props) {
           plugins={[ dayGridPlugin, interactionPlugin  ]}
           initialView="dayGridMonth"
           weekends={true}
-          events= {event}
+          events= {list}
           eventContent={renderEventContent}
           selectable={true}
           headerToolbar= {

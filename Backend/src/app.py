@@ -112,7 +112,7 @@ def get_events():
 def get_groups():
      # fetching from the database
 
-    group_objects = sessiondb.query(Event).all()
+    group_objects = sessiondb.query(Group).all()
     
     # transforming into JSON-serializable objects
     schema = GroupSchema(many=True)
