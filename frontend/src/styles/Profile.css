@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   background: linear-gradient(120deg, #2eba7c, #2ebab7);
-  height: 90vh;
+  min-height: 90vh;
 }
 .profile {
   display: flex;
@@ -11,7 +11,6 @@
   justify-content: space-between;
 }
 .left {
-  height: 370px;
   width: 450px;
   background-color: white;
   border-radius: 10px;
@@ -51,4 +50,60 @@
 .pic-text {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+}
+.editing {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: black;
+  background-color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-style: solid;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.button {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  height: 40px;
+  width: 50px;
+  margin-top: 8px;
+  background-color: #2eba7c;
+  border-radius: 8px;
+  border: none;
+}
+.input-label {
+  margin-bottom: 0px;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 16px;
+  color: #475569;
+}
+.input-field {
+  font-size: 14px;
+  height: 40px;
+  border: 1px solid #d7dfe9;
+  background-color: #e2e8f0;
+  color: #64748b;
+  border-radius: 2px;
+  margin-top: 5px;
+  padding: 8px 16px 8px 16px;
+  width: 100%;
+}
+.edit-heading {
+  font-size: 25px;
+  font-weight: 500;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }

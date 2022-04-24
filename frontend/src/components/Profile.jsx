@@ -7,8 +7,6 @@ import zxcvbn from "zxcvbn";
 import "../styles/Profile.css";
 
 function Profile(props) {
- 
-  
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -25,29 +23,52 @@ function Profile(props) {
   const [Firstname, setFirst] = useState("");
   const [Lastname, setLast] = useState("");
 
+  const [edit, setEdit] = useState(false);
+
   function handleSubmit(event) {
     event.preventDefault();
-    if(username == "") {username = Username; }
-    if(email == "") {email = Email; }
-    if(password == "") {password = Password; }
-    if(intro == "") {intro = Intro; }
-    if(mobile == "") {mobile = Mobile; }
-    if(firstname == "") {firstname = Firstname; }
-    if(lastname == "") {lastname = Lastname; } 
-    props.apiservice.update_user()(username, email, password,intro, mobile,firstname,lastname)
+    if (username == "") {
+      username = Username;
+    }
+    if (email == "") {
+      email = Email;
+    }
+    if (password == "") {
+      password = Password;
+    }
+    if (intro == "") {
+      intro = Intro;
+    }
+    if (mobile == "") {
+      mobile = Mobile;
+    }
+    if (firstname == "") {
+      firstname = Firstname;
+    }
+    if (lastname == "") {
+      lastname = Lastname;
+    }
+    props.apiservice.update_user()(
+      username,
+      email,
+      password,
+      intro,
+      mobile,
+      firstname,
+      lastname
+    );
   }
   useEffect(() => {
     props.apiservice.get_user(props.username).then((result) => {
       console.log(result.data);
-      setUsername(result['data'][0]['username']);
-      setEmail(result['data'][0]['email']);
-      setPassword(result['data'][0]['password']);
-      setIntro(result['data'][0]['intro']);
-      setMobile(result['data'][0]['mobile']);
-      setFirst(result['data'][0]['firstname']);
-      setLast(result['data'][0]['lastname']);
+      setUsername(result["data"][0]["username"]);
+      setEmail(result["data"][0]["email"]);
+      setPassword(result["data"][0]["password"]);
+      setIntro(result["data"][0]["intro"]);
+      setMobile(result["data"][0]["mobile"]);
+      setFirst(result["data"][0]["firstname"]);
+      setLast(result["data"][0]["lastname"]);
     });
- 
   }, []);
 
   return (
@@ -65,34 +86,62 @@ function Profile(props) {
             <h1 className="pic-text">{Username}</h1>
           </div>
           <div className="right">
-            <p className="info">First name:   {Firstname}</p>
-            <p className="info">Last name:   {Lastname}</p>
-            <p className="info">Username:  {Username}</p>
-            <p className="info">Email:  {Email}</p>
-            <p className="info">Phone Number:   {Mobile}</p>
-            <p className="info">Bio:   {Intro}</p>
-
-          <form>
-          <label>Username: </label>
-            <input onChange={(e)=>setusername(e.target.value)}></input>
-          <label>Password: </label>
-            <input onChange={(e)=>setpassword(e.target.value)}></input>
-          <label>Email: </label>
-
-            <input  onChange={(e)=>setemail(e.target.value)}></input>
-
-            <label>mobile:  </label>
-
-            <input  onChange={(e)=>setmobile(e.target.value)}></input>
-
-            <label>Bio: </label>
-
-            <input  onChange={(e)=>setintro(e.target.value)}></input>
-
-          <button onClick={handleSubmit}>Submit</button>
-
-          </form>
+            <p className="info">First name: {Firstname}</p>
+            <p className="info">Last name: {Lastname}</p>
+            <p className="info">Username: {Username}</p>
+            <p className="info">Email: {Email}</p>
+            <p className="info">Phone Number: {Mobile}</p>
+            <p className="info">Bio: {Intro}</p>
+            <button className="button" onClick={() => setEdit(!edit)}>
+              Edit
+            </button>
           </div>
+        </div>
+        <div className="editing">
+          {edit && (
+            <div>
+              <h1 className="edit-heading">Edit your Details</h1>
+              <div className="card">
+                <form>
+                  <label className="input-label">Username: </label>
+                  <input
+                    className="input-field"
+                    onChange={(e) => setusername(e.target.value)}
+                  ></input>
+                  <label className="input-label">Password: </label>
+                  <input
+                    type="password"
+                    className="input-field"
+                    onChange={(e) => setpassword(e.target.value)}
+                  ></input>
+                  <label className="input-label">Email: </label>
+
+                  <input
+                    className="input-field"
+                    onChange={(e) => setemail(e.target.value)}
+                  ></input>
+
+                  <label className="input-label">mobile: </label>
+
+                  <input
+                    className="input-field"
+                    onChange={(e) => setmobile(e.target.value)}
+                  ></input>
+
+                  <label className="input-label">Bio: </label>
+
+                  <input
+                    className="input-field"
+                    onChange={(e) => setintro(e.target.value)}
+                  ></input>
+
+                  <button className="button" onClick={handleSubmit}>
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
