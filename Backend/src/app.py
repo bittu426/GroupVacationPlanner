@@ -114,7 +114,7 @@ def get_users():
     Username = request.json.get("username", None)
     user_obj = sessiondb.query(User).filter_by(username= Username )
 
-    schema = UserSchema(many=true)
+    schema = UserSchema(many=True)
     user = schema.dump(user_obj)
 
     sessiondb.close()
@@ -135,7 +135,7 @@ def update_user():
     "password": json_data["password"]
     })
 
-    schema = UserSchema(many=true)
+    schema = UserSchema(many=True)
     user = schema.dump(user_obj)
 
     sessiondb.close()
