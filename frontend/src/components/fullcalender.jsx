@@ -7,9 +7,9 @@ import CalenderModal from "./CalenderModal";
 
 export default function Calender(props) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [title, settitle] = useState([""]);
-  const [date, setdate] = useState([""]);
-  const [event, setEvent] = useState([{title: ' ' , date: ' ' }]);
+  const [title, settitle] = useState("");
+  const [date, setdate] = useState("");
+  const [event, setEvent] = useState({title: ' ' , date: ' ' });
 
   useEffect(() => {
     props.apiservice.get_event().then((result) => {
