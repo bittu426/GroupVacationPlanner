@@ -103,7 +103,7 @@ function Profile(props) {
               <h1 className="edit-heading">Edit your Details</h1>
               <div className="card">
                 <form>
-                  <label className="input-label">User: </label>
+                  <label className="input-label">Username: </label>
                   <input
                     className="input-field"
                     onChange={(e) => setusername(e.target.value)}
